@@ -1,4 +1,4 @@
-dia = int(input("Digite 1 a 7 para identificar qual dia da semana se iguala."))
+dia = int(input("Digite 1 a 7 para exibir o dia da semana correspondente: "))
 
 match dia:
     case 1:
