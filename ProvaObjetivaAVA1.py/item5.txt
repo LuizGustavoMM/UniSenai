@@ -1,0 +1,15 @@
+1. Descreva como uma ferramenta de desenvolvimento integrado (IDE) pode auxiliar na 
+elaboração de algoritmos, especificamente em relação à verificação de erros de sintaxe
+
+R: 
+a. IDEs usam cores para destacar diferentes partes do código, como palavras-chave e variáveis. 
+Isso ajuda a ver rapidamente se algo está errado, como um erro de digitação ou símbolo fora do lugar.
+
+b. IDEs verificam seu código enquanto você digita e mostram erros imediatamente.
+Assim, você pode corrigir problemas na hora, sem precisar compilar ou executar o código.
+
+c. IDEs oferecem sugestões e completam automaticamente partes do código.
+Isso ajuda a evitar erros comuns e é útil especialmente para quem está começando.
+
+d. Se o código tiver erros durante a execução, a IDE fornece mensagens detalhadas
+sobre onde e qual é o problema. Isso facilita a localização e correção dos erros.

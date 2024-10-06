@@ -1,0 +1,17 @@
+ALIQUOTA_IMPOSTO = 0.15  # constante
+valor_produto = 100.0  # variável
+
+valor_final = valor_produto + (valor_produto * ALIQUOTA_IMPOSTO)
+print(valor_final)
+
+
+1. Explique a diferença entre uma variável e uma constante com base no código acima.
+
+R: A "ALIQUOTA_IMPOSTO" é uma constante pelo motivo de que a aliquota em cima do imposto 
+não muda, vai ser o mesmo imposto em cima do produto, já a variável "valor_produto" vai 
+variar de produto para produto
+
+2. Se o valor da alíquota fosse alterado no meio do código, isso seria permitido? Justifique sua resposta.
+
+R: Não seria permitido pois a premissa do código é conter a constante de "ALIQUOTA_IMPOSTO" 
+para que o cálculo seja de acordo com os impostos.

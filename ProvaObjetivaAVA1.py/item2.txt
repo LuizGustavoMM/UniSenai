@@ -1,0 +1,26 @@
+Comando:  Dado o seguinte trecho de pseudocódigo, identifique o valor final da variável resultado:
+
+Pseudocódigo
+
+inteiro A = 5
+inteiro B = 10
+resultado = A + B
+
+Agora, considerando o uso de ferramentas para a elaboração de algoritmos, como diagramas de fluxo
+(flowcharts), pseudocódigo e tabelas de teste de mesa, responda às seguintes perguntas:
+
+
+1. Alternativas: 
+Ferramenta de Elaboração de Algoritmo:
+Com base na ferramenta FLUXOGRAMA explique como ela pode ser usada para representar o algoritmo que calcula o valor de resultado:
+
+R: Código inicia -> variáveis recebem valor inteiro definitivo "A = 5, B = 10" -> Variável resultado realiza a operação de adição -> Fim do Código
+
+
+2. Vantagem da Ferramenta Escolhida:
+Explique uma vantagem da ferramenta que você escolheu em relação às outras ferramentas na fase de planejamento de um software. 
+Como ela contribui para a clareza, a precisão ou a eficiência do desenvolvimento?
+
+R: A vantagem de utilizar ferramentas de fluxorgrama é que o planejamento prévio do projeto fique mais claro e melhore a comunicação entre 
+o cliente e a empresa assim garantindo que todas demandas e funcionalidades solicitadas pelo cliente sejam atendidas e diminua os ruídos de 
+comunicação entre o cliente e a empresa.
