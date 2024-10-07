@@ -1,0 +1,33 @@
+Estruturação do código: 
+
+* Código bem estruturado em relação ao condicionamento
+  (if, elif, else) usados corretamente.
+
+* Variável poderia ser mais esclarecida, zerada no começo e comentarios no código
+  (Ao invés de "t" poderia ser "temperatura", melhora a legibilidade).
+
+
+Lógica do código:
+
+* De acordo com a lógica do mundo real e a tradução de Fahrenheit para Grau Celsius 
+  as temperaturas mostradas no codígo não condizem com a norma de frio e quente. 
+  0° Fahrenheit é muito frio, assim como 30, então no sentido lógico foi alterado
+  no código para temperaturas mais proximas das condições reais.
+
+* O primeiro "if" cria um condicionamento onde caso a Variável temperatura
+  seja maior que zero vai válidar a condição e encerrar o código, assim
+  não possibilitando que o valor seja testado na segunda condição.
+
+* Neste caso qualquer valor digitado de 1 pra cima vai acionar o print
+  de 'está frio' e a solução para este código é trocar o condicionamento
+  do if para o elif e do elif para o if, assim como apresenta no código abaixo.
+
+temperatura = 0
+temperatura = int(input("Digite a tempertura: "))
+
+if temperatura > 80:
+    print("Está quente!")
+elif temperatura > 50:
+    print("Está frio")
+else:
+    print("Está congelando")
