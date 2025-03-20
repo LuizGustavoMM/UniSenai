@@ -16,7 +16,6 @@ public class javaAdvinhacao {
         }
 
         public static boolean verificarTentativa(int palpite, int numeroSecreto) {
-
-                return // retornar acertou ou errou
+                return
         }
 }
