@@ -1,2 +1,0 @@
-# UniSenai
-Projetos da faculdade
