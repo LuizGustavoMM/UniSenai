@@ -1,34 +1,43 @@
 package MinimarketMVP.clientes;
 
 public class Cliente {
-    private final int cpf;
+    private final int id;
     private String nome;
-    private boolean fidelidade;
+    private String telefone;
+    private Categoria categoria;
 
-    public Cliente(String nome, int cpf, boolean fidelidade) {
+    public Cliente(int id, String nome, String telefone, Categoria categoria) {
+        this.id = id;
         this.nome = nome;
-        this.cpf = cpf;
-
+        this.telefone = telefone;
+        this.categoria = categoria;
     }
 
-    public int getCpf() {
-        return cpf;
+    public int getId() {
+        return id;
     }
 
     public String getNome() {
         return nome;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public boolean isFidelidade() {
-        return fidelidade;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
-
-    public void setFidelidade(boolean fidelidade) {
-        this.fidelidade = fidelidade;
-    }
-
 }
