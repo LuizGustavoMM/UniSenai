@@ -10,6 +10,7 @@ public class Main {
         Usuario gerente = new Usuario(1, "Joana", "admin123", Perfil.GERENTE);
 
         // Simulação de criação de clientes
+        Venda venda1 = new Venda("coca", "banana", "");
         Cliente cliente1 = new Cliente("Carlos Silva", 123456789, true);
         Cliente cliente2 = new Cliente("Marina Souza", 987654321, false);
 
