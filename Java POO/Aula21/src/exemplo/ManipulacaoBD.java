@@ -9,15 +9,15 @@ public class ManipulacaoBD {
         conn = Conexao.getConnection();
     }
 
-    public void inserirInseguro(String nome, String telefone) {
-        String inserirSQL = "INSERT INTO exemplo (nome, telefone) VALUES ('" + nome + "', '" + telefone + "');";
-        try (Statement stmt = conn.createStatement();) {
-            stmt.execute(inserirSQL);
-        } catch (SQLException e) {
-            System.err.println("Nao foi possivel realizar a insercao: " + e.getMessage());
-        }
-
-    }
+//    public void inserirInseguro(String nome, String telefone) {
+//        String inserirSQL = "INSERT INTO exemplo (nome, telefone) VALUES ('" + nome + "', '" + telefone + "');";
+//        try (Statement stmt = conn.createStatement();) {
+//            stmt.execute(inserirSQL);
+//        } catch (SQLException e) {
+//            System.err.println("Nao foi possivel realizar a insercao: " + e.getMessage());
+//        }
+//
+//    }
 
     public void inserirSeguro(String nome, String telefone) {
         String inserirSQL = "INSERT INTO exemplo (nome, telefone) VALUES (?, ?);";

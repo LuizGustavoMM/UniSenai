@@ -30,28 +30,28 @@ public class Main {
          * PASSO 2: Exemplo de conexão com uso de properties
          */
 
-//        Connection conn = ConexaoComPropriedades.getConnection();
-//        if (conn != null) {
-//            System.err.println("Conexao estabelecida com sucesso!");
-//            ConexaoComPropriedades.close(conn);
-//        } else {
-//            System.err.println("Erro na tentativa de conexao!");
-//            System.exit(1);
-//        }
+        Connection conn = ConexaoComPropriedades.getConnection();
+        if (conn != null) {
+            System.err.println("Conexao estabelecida com sucesso!");
+            ConexaoComPropriedades.close(conn);
+        } else {
+            System.err.println("Erro na tentativa de conexao!");
+            System.exit(1);
+        }
 
         /*
          * PASSO 3: Exemplo de criação de tabela
          */
 
-//        CriacaoTabela ct = new CriacaoTabela();
-//        ct.criar();
+        CriacaoTabela ct = new CriacaoTabela();
+        ct.criar();
 
         /*
          * PASSO 4: Exemplo de operações de manipulação
          */
 
         ManipulacaoBD m = new ManipulacaoBD();
-        m.inserirInseguro("Pessoa insegura", "0123456789");
+//        m.inserirInseguro("Pessoa insegura", "0123456789");
         m.inserirSeguro("Pessoa segura", "9876543210");
         m.atualizar(1, "Agora atualizado com seguranca", "999999999999");
         m.excluir(2);
