@@ -1,0 +1,5 @@
+Arquivos gerados
+
+task.h e .c 
+sprint.h e .c
+

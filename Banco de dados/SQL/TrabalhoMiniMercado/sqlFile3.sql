@@ -1,0 +1,2 @@
+use mercado;
+show tables
