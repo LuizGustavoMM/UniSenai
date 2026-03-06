@@ -5,63 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90549c0b-bf96-47e8-bc0d-daabe7144704" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Java POO/Aula14LSP/errado/BorrachaPato.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java POO/Aula14LSP/errado/DomesticoPato.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java POO/Aula14LSP/errado/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java POO/Aula14LSP/errado/Pato.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java POO/Aula14LSP/errado/SelvagemPato.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 01/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 01/.idea/BAGACARECAAAAAAAAAAAAAAAA.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 01/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 01/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 01/OlaMundo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 01/OlaMundo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 01/TiposDados.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 01/TiposDados.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 02/App/ImparPar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 02/App/ImparPar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 02/App/ImparParCopy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 02/DesviosLacos.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 02/DesviosLacos.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 03/App/NumeroPrimo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 03/App/NumeroPrimo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 03/App/Palindromo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 03/App/Palindromo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 03/lacoVetor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 03/lacoVetor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 04/SwitchMetodo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 04/SwitchMetodo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 04/javaAdvinhacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/Herança/Animal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/Herança/Animal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/Herança/Cachorro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/Herança/Cachorro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/Herança/Gato.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/Herança/Gato.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/Herança/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/Herança/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/folhaPagamento/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/folhaPagamento/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/folhaPagamento/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/folhaPagamento/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/folhaPagamento/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/folhaPagamento/folhaPagamento.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/folhaPagamento/src/folha/FolhaPagamento.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/folhaPagamento/src/folha/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/folhaPagamento/src/folha/empregado/Empregado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/folhaPagamento/src/folha/empregado/Gerente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 08/folhaPagamento/src/folha/empregado/Vendedor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 09/calculadora/main/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 09/calculadora/main/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 09/calculadora/main/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 09/calculadora/main/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 09/calculadora/main/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 09/calculadora/main/main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 09/calculadora/main/src/calculadora/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 09/calculadora/main/src/calculadora/figuras/Circulo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 09/calculadora/main/src/calculadora/figuras/FiguraGeometrica.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 09/calculadora/main/src/calculadora/figuras/Quadrado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java POO/Aula 09/calculadora/main/src/calculadora/figuras/Retangulo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desenvolvimento-Web/Bootstrap/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Desenvolvimento-Web/Bootstrap/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desenvolvimento-Web/Bootstrap/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Desenvolvimento-Web/Bootstrap/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/DesenvolvimentoWebPoo/AulaBaseWeb" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -79,19 +25,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/luiz_massing/Documents/UniSenai/Java POO/Aula14LSP"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/luiz_massing/Documents/UniSenai/Java POO/Aula14LSP&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\luiz_massing\Documents\UniSenai\Java POO\Aula14LSP" />
     </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -101,7 +59,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744237152299</updated>
+      <workItem from="1772576363269" duration="2131000" />
+      <workItem from="1772755185093" duration="45000" />
+      <workItem from="1772755245303" duration="150000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
