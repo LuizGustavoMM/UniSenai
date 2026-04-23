@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package hello;
+
+service digaHelloService {
+    rpc digaHello(HelloRequest) returns (HelloResponse);
+}
+
+message HelloRequest {
+    string nome = 1;
+}
+
+message HelloResponse {
+    string resposta = 1;
+}

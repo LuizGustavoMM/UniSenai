@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package estoque;
+
+service estoqueService {
+    rpc recuperarItemEstoque(ItemEstoqueRequest) returns (ItemEstoqueResponse);
+    rpc atualizarItemEstoque(UpdateItemEstoqueRequest) returns (ItemEstoqueResponse);
+}
+
+message ItemEstoqueRequest {
+    int32 codigoItem = 1;
+}
+
+message UpdateItemEstoqueRequest {
+    int32 codigoItem = 1;
+    float valor = 2;
+    int32 quantidade = 3;
+}
+
+message ItemEstoqueResponse {
+    int32 codigoItem = 1;
+    string nome = 2;
+    float valor = 3;
+    int32 quantidade = 4;
+}

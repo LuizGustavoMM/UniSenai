@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package estoque;
+
+service EstoqueService {
+  rpc buscarProduto (ConsultaProdutoRequest) returns (ProdutoResponse);
+}
+
+message ConsultaProdutoRequest {
+  string codigo_produto = 1;
+}
+
+message ProdutoResponse {
+  string nome_produto = 1;
+  double preco = 2;
+  int32 quantidade_estoque = 3;
+}
