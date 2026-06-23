@@ -1,0 +1,1 @@
+alter table produto alter column cor type varchar(100);

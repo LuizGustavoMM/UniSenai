@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres_aula
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: aula_web
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senai
+    ports:
+      - "5432:5432"
+  loja-produto:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+volumes:
+  postgres_data:
