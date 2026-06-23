@@ -1,0 +1,12 @@
+br\senai\simuladoprova\controller\ProdutoController.class
+br\senai\simuladoprova\service\ProdutoService.class
+br\senai\simuladoprova\model\Pedido.class
+br\senai\simuladoprova\dto\PedidoProdutosRequestDTO.class
+br\senai\simuladoprova\service\PedidoService.class
+br\senai\simuladoprova\dto\ProdutoRequestDTO.class
+br\senai\simuladoprova\model\Produto.class
+br\senai\simuladoprova\controller\PedidoController.class
+br\senai\simuladoprova\repository\PedidoRepository.class
+br\senai\simuladoprova\dto\PedidoRequestDTO.class
+br\senai\simuladoprova\repository\ProdutoRepository.class
+br\senai\simuladoprova\SimuladoProvaApplication.class

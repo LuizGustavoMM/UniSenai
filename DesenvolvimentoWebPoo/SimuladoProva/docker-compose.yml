@@ -1,0 +1,19 @@
+services:
+  # Servico do PostgreSQL usado pela API durante a prova.
+  postgres:
+    image: postgres:14
+    container_name: postgres_prova_pratica
+    environment:
+      # Nome do banco exigido no enunciado.
+      POSTGRES_DB: prova_pratica
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senai
+    ports:
+      # Expõe o PostgreSQL localmente na porta padrao 5432.
+      - "5432:5432"
+    volumes:
+      # Mantem os dados salvos mesmo se o container for recriado.
+      - postgres_prova_pratica_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_prova_pratica_data:
