@@ -1,0 +1,16 @@
+name: servidor
+description: API local da Mesa D&D (Dart + shelf) — sem Supabase, banco PostgreSQL local.
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: ^3.4.0
+
+dependencies:
+  shelf: ^1.4.1
+  shelf_router: ^1.1.4
+  postgres: ^3.5.0
+  uuid: ^4.4.0
+
+dev_dependencies:
+  lints: ^4.0.0

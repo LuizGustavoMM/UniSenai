@@ -1,0 +1,54 @@
+services:
+  # Banco de dados local do servidor (no notebook do mestre).
+  db:
+    image: postgres:16-alpine
+    container_name: mesa-db
+    environment:
+      POSTGRES_DB: mesa
+      POSTGRES_USER: mesa
+      POSTGRES_PASSWORD: mesa
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mesa -d mesa"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # API REST (Dart + shelf). Testável no Postman em http://localhost:8000
+  servidor:
+    build:
+      context: ./servidor
+    container_name: mesa-servidor
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: mesa
+      DB_USER: mesa
+      DB_PASSWORD: mesa
+      PORT: "8080"
+    ports:
+      # host 8000 -> contêiner 8080
+      - "8000:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Painel web do mestre (Flutter Web servido por nginx).
+  web-mestre:
+    build:
+      context: ./web-mestre
+      dockerfile: Dockerfile
+    container_name: web-mestre
+    ports:
+      # host 8080 -> contêiner 80. Abrir http://localhost:8080 no navegador do mestre.
+      - "8080:80"
+    depends_on:
+      - servidor
+    restart: unless-stopped
+
+volumes:
+  db-data:
