@@ -1,4 +1,4 @@
-# Mesa D&D — Servidor + Painel do Mestre
+# Mesa D&D | Servidor + Painel do Mestre
 
 Projeto da disciplina DSMD. Sistema para gerenciar **mesas de RPG**: o **mestre** cria mesas no navegador do notebook e vê as **fichas** de todos os jogadores; os **jogadores** (APK Android) entram em uma mesa pelo **código** e enviam suas fichas.
 
