@@ -1,8 +1,10 @@
-# Arquitetura — Aplicação do Notebook (Servidor + Painel do Mestre)
+# Arquitetura — Servidor + Painel do Mestre (como foi implementado)
 
-O notebook do mestre é ao mesmo tempo o **servidor da mesa** (Docker) e o **ponto de acesso Wi-Fi** da rede. O mestre usa a aplicação pelo **navegador**; os celulares dos jogadores se conectam à rede Wi-Fi criada pelo notebook e falam com o servidor por HTTP.
+O notebook do mestre é ao mesmo tempo o **servidor da mesa** (Docker) e o **ponto de acesso** da rede. O mestre usa a aplicação pelo **navegador** (`localhost`); os celulares dos jogadores se conectam à mesma rede e falam com o servidor por **HTTP + JSON**.
 
-> **Escopo atual:** o sistema só conecta fichas às sessões e as mantém sincronizadas, **sem autenticação** — o acesso é pelo **código gerado ao criar/iniciar a sessão**. O **mestre** cria sessões e vê **todas as fichas** de cada sessão; o **jogador** conecta na sessão pelo código e vê **somente as suas** (uma ficha por sessão, podendo participar de várias sessões). A ficha é armazenada como JSON genérico versionado — **o conteúdo da ficha será definido depois**, sem impacto no servidor, que trata o JSON como opaco.
+> **Sem Supabase.** A arquitetura original previa Supabase (PostgREST/Kong). Isso foi **abandonado**. Hoje o backend é uma **API própria em Dart + `shelf`** com **PostgreSQL local**, empacotada em Docker.
+>
+> **Sem autenticação.** O acesso é pelo **código da mesa** (6 caracteres) gerado ao criar a mesa. O **mestre** cria mesas e vê **todas as fichas**; o **jogador** entra pelo código (enviado no header `X-Mesa-Codigo`) e envia a própria ficha. "Sessão" foi renomeada para **"Mesa"** (mesa de RPG). A ficha é um **JSON opaco versionado** — o conteúdo será detalhado depois, sem impacto no servidor.
 
 ---
 
@@ -11,131 +13,148 @@ O notebook do mestre é ao mesmo tempo o **servidor da mesa** (Docker) e o **pon
 ```mermaid
 flowchart TB
     subgraph NOTE["Notebook do mestre"]
-        HOTSPOT["Placa Wi-Fi em modo hotspot<br/>(cria a rede da mesa)"]
-        NAV["Navegador do mestre<br/>http://localhost"]
+        NAV["Navegador do mestre<br/>http://localhost:8080"]
         subgraph DOCKER["Docker (docker compose)"]
             WEB["web-mestre (nginx)<br/>Flutter Web buildado — porta 80"]
-            KONG["Supabase API Gateway (Kong)<br/>porta 8000"]
-            PGREST["PostgREST — /rest/v1<br/>(API REST das tabelas)"]
-            PG[("PostgreSQL<br/>sessões, pareamentos, fichas")]
-            KONG --> PGREST
-            PGREST --> PG
+            API["servidor (Dart + shelf)<br/>API REST/JSON — porta 8080 (host 8000)"]
+            PG[("PostgreSQL 16<br/>mesas, fichas")]
+            API --> PG
         end
-        NAV --> WEB
-        NAV -- "API (JSON)" --> KONG
+        NAV -->|arquivos estáticos| WEB
+        NAV -->|"API (JSON) http://localhost:8000"| API
     end
 
     CEL1["Celular jogador 1<br/>(APK Flutter + sqflite)"]
-    CEL2["Celular jogador 2"]
-    CELN["Celular jogador N"]
+    CEL2["Celular jogador N"]
 
-    CEL1 -- "Wi-Fi do notebook<br/>http://IP_NOTEBOOK:8000" --> HOTSPOT
-    CEL2 --> HOTSPOT
-    CELN --> HOTSPOT
-    HOTSPOT --> KONG
+    CEL1 -->|"http://IP_NOTEBOOK:8000<br/>header X-Mesa-Codigo"| API
+    CEL2 --> API
 ```
 
-- **Rede**: o notebook ativa o hotspot do sistema operacional (Windows: *Hotspot móvel*, IP padrão `192.168.137.1`; Linux/NetworkManager: IP padrão `10.42.0.1`). Não é necessário internet — a rede é apenas local.
-- **Somente jogadores** (não-mestre) conectam pelo celular. O mestre usa o navegador na própria máquina (`localhost`).
-- Os celulares acessam o servidor pelo **IP do notebook na rede do hotspot**, informado pelo mestre junto com o código da sessão.
+- **Rede local**, sem internet. Os celulares acessam a API pelo **IP do notebook** na rede (Wi-Fi comum ou *Hotspot móvel* do Windows, IP padrão `192.168.137.1`).
+- **Somente jogadores** usam o celular. O mestre usa o navegador na própria máquina (`localhost`).
+- O celular só precisa da **porta 8000** (API). A `8080` (painel) é usada só no navegador do notebook.
 
 ## 2. Contêineres (docker compose)
 
-| Contêiner | Papel | Porta no host | Tecnologia de referência |
+| Contêiner | Papel | Porta host → contêiner | Tecnologia |
 |---|---|---|---|
-| `web-mestre` | Serve o build **Flutter Web** do painel do mestre | 80 | Flutter (mesmo framework das aulas), nginx só como servidor de arquivos estáticos |
-| Supabase self-hosted (Kong, PostgREST, PostgreSQL) | Backend: API REST + banco (módulo de autenticação presente na distribuição, mas **não utilizado**) | 8000 (API), 5432 (interno) | O **mesmo Supabase consumido nas aulas**, apenas hospedado localmente (distribuição oficial em Docker Compose); acesso com a `apikey`, como na aula 18/06-API |
+| `db` | Banco de dados do servidor | `5432 → 5432` | PostgreSQL 16 (volume persistente `db-data`) |
+| `servidor` | API REST (JSON) | `8000 → 8080` | Dart + `shelf`/`shelf_router` + `postgres`; compilado para executável nativo (imagem `scratch`) |
+| `web-mestre` | Painel do mestre | `8080 → 80` | Flutter Web (build) servido por nginx |
 
-O "banco local do servidor" é o **PostgreSQL dentro do Docker**, com volume persistente no disco do notebook. Nenhum backend é programado à mão: a API REST das tabelas é gerada pelo PostgREST, exatamente como o professor usa.
+As tabelas são criadas pelo próprio servidor no startup (`CREATE TABLE IF NOT EXISTS`), com *retry* enquanto o Postgres sobe.
 
-## 3. Painel do mestre (Flutter Web)
-
-Mesma arquitetura em camadas das aulas — o código é Flutter comum compilado para web:
+## 3. API do servidor (`servidor/`)
 
 ```
-web-mestre (Flutter Web)
+servidor/
+├── bin/server.dart      # pipeline: logRequests + CORS + tratarErros + rotas
+└── lib/src/
+    ├── db.dart          # pool PostgreSQL, migração, queries, regra de sync
+    ├── middleware.dart   # CORS, erros→JSON, exigirCodigoMesa (header)
+    └── router.dart      # rotas do mestre e do jogador (shelf_router)
+```
+
+**Rotas do mestre** (navegador em `localhost`, sem código):
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `POST` | `/mesas` | Cria mesa `{"nome":"..."}`; servidor **gera código + id**; retorna `201`. |
+| `GET` | `/mesas` | Lista mesas. |
+| `GET` | `/mesas/<id>` | Detalhe da mesa. |
+| `GET` | `/mesas/<id>/fichas` | Todas as fichas da mesa (visão do mestre). |
+| `DELETE` | `/mesas/<id>` | Remove a mesa (fichas em cascata). |
+
+**Rotas do jogador** (exigem header `X-Mesa-Codigo`; sem header → `401`, código inválido → `403`):
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/mesa/info` | Valida o código e retorna a mesa. |
+| `GET` | `/mesa/fichas` | Fichas da mesa (aceita `?jogador_id=`). |
+| `GET` | `/mesa/fichas/<jogadorId>` | Ficha de um jogador (checagem de versão). |
+| `POST` | `/mesa/fichas` | Cria/sincroniza a ficha. |
+
+## 4. Painel do mestre (Flutter Web — `web-mestre/`)
+
+Arquitetura em camadas `data / logic / presentation`, Cubit (`flutter_bloc`) e `http` — padrão das aulas.
+
+```
+web-mestre/lib/
 ├── data/
-│   ├── models/          sessao_model, ficha_model
-│   └── repositories/    sessao_repository (CRUD /rest/v1/sessoes, /rest/v1/sessao_jogadores)
-│                        ficha_repository (GET /rest/v1/fichas?sessao_id=eq.X)
-├── logic/               sessao_cubit, ficha_cubit (+ states Initial/Loading/Loaded/Error)
-└── presentation/        sessoes_screen, painel_sessao_screen
+│   ├── api_config.dart      # URL da API (dart-define API_URL; default http://localhost:8000)
+│   ├── models/              # mesa_model, ficha_model (fromJson/toJson)
+│   └── repositories/        # mesa_repository: http + cache no navegador (shared_preferences)
+├── logic/                   # mesa_cubit, ficha_cubit (+ states Inicial/Carregando/Carregada/Erro)
+└── presentation/
+    ├── home_shell.dart      # NavigationRail recolhível (hambúrguer); abas "Nova mesa" e "Minhas mesas" (ícone de mapa)
+    └── screens/             # nova_mesa, minhas_mesas, painel_mesa
 ```
 
-Funcionalidades do mestre (sem login — o painel abre direto em `localhost`):
+Funcionalidades:
 
-1. **Criar nova sessão** → o app gera o **código da sessão** (6 caracteres alfanuméricos, coluna `UNIQUE`), grava em `sessoes` e **exibe o código na tela**; o mestre fornece o código (e o IP) aos jogadores.
-2. **Iniciar/retomar sessão** → lista as sessões existentes no servidor; ao abrir uma, vê os jogadores pareados e as fichas.
-3. **Painel de fichas** → lista **todas as fichas da sessão** (nome do personagem, dono, versão, última atualização; o conteúdo do JSON é exibido de forma genérica por enquanto). **A atualização é via API** (`GET /rest/v1/fichas?sessao_id=eq.<id>`), disparada ao abrir a tela e por botão/pull de atualização — padrão REST + Cubit das aulas, sem websocket.
+1. **Criar mesa** → chama `POST /mesas`; o servidor gera o **código** (exibido em destaque, com copiar) e o **id interno**. A mesa é salva no **cache do navegador** (`shared_preferences` → localStorage): como não há login, o cache é a "memória" do mestre.
+2. **Minhas mesas** → lista do cache; tocar abre o painel.
+3. **Painel da mesa** → mostra o código e busca `GET /mesas/<id>/fichas`, listando **todas as fichas** (nome, jogador, versão; o JSON é exibido de forma genérica), com botão atualizar.
 
-## 4. Modelo de dados (PostgreSQL no servidor)
+## 5. Modelo de dados (PostgreSQL)
 
 ```mermaid
 erDiagram
-    SESSAO ||--o{ SESSAO_JOGADOR : "possui"
-    SESSAO_JOGADOR ||--o| FICHA : "tem"
+    MESA ||--o{ FICHA : "possui"
 
-    SESSAO {
+    MESA {
         uuid id PK
+        text codigo UK "6 caracteres, gerado ao criar"
         text nome
-        text codigo UK "código gerado ao criar a sessão"
-        text status "aberta | encerrada"
         timestamptz created_at
     }
-    SESSAO_JOGADOR {
-        uuid id PK
-        uuid sessao_id FK
-        uuid jogador_id "uuid gerado pelo app do jogador"
-        text apelido
-        timestamptz joined_at
-    }
     FICHA {
-        uuid id PK "uuid gerado no celular"
-        uuid sessao_id FK
-        uuid jogador_id "dono da ficha (uuid do app)"
+        uuid id PK
+        uuid mesa_id FK
+        text jogador_id "uuid gerado no app do jogador"
         text nome_personagem
         int versao "controle de versão"
-        jsonb dados "JSON opaco exportado pelo celular — estrutura a definir"
+        jsonb dados "JSON opaco da ficha"
         timestamptz updated_at
     }
 ```
 
-- **Não há tabela de usuários**: o jogador é identificado por um **UUID gerado pelo próprio app** na primeira execução + um apelido informado ao entrar na sessão. O mestre é simplesmente quem usa o painel no notebook.
-- A ficha chega do celular como **JSON completo** e é armazenada na coluna `dados` (JSONB); `versao` é o campo de comparação.
-- **Controle de acesso no nível da aplicação** (aceitável em rede local confiável): o APK sempre consulta fichas filtrando `?jogador_id=eq.<seu_uuid>`; o painel do mestre consulta por sessão, sem filtro de jogador.
+- **Uma tabela `fichas` com `mesa_id`** (não uma tabela física por mesa): isola as fichas por mesa de forma simples. Única por `(mesa_id, jogador_id)` → uma ficha por jogador por mesa.
+- **Sem tabela de usuários**: o jogador é identificado pelo `jogador_id` (UUID gerado no app). O mestre é quem usa o painel no notebook.
 
-## 5. Papel do servidor na sincronização de fichas
+## 6. Sincronização (regra "maior versão vence")
 
-O servidor é **passivo**: quem decide enviar é o aplicativo do celular (ver documento do APK). O contrato é:
+O servidor é **passivo**: quem envia é o app do celular. No `POST /mesa/fichas` (corpo `{jogador_id, nome_personagem, versao, dados}`):
 
-1. Celular conecta (ou salva uma alteração) → consulta `GET /rest/v1/fichas?id=eq.<uuid>&select=versao`.
-2. Se a ficha não existe no servidor → `POST /rest/v1/fichas` (JSON completo).
-3. Se `versao` do servidor **<** `versao` local → `PATCH /rest/v1/fichas?id=eq.<uuid>` com o JSON e a nova versão. O servidor fica sempre com a ficha mais atual do jogador.
-4. Se as versões são iguais → nada a fazer.
-
-> Evolução opcional (mais robusta, ainda REST): uma função SQL `sync_ficha(json)` exposta pelo PostgREST em `POST /rest/v1/rpc/sync_ficha`, que faz o upsert-se-mais-novo de forma atômica no banco. Continua sendo uma chamada `http.post` como nas aulas.
+1. Ficha não existe no servidor → **cria** (`201`, `status: criada`).
+2. `versao` recebida **>** a do servidor → **atualiza** (`200`, `status: atualizada`).
+3. `versao` **<=** a do servidor → **nada a fazer** (`200`, `status: inalterada`).
 
 ```mermaid
 sequenceDiagram
     participant M as Navegador do mestre (Flutter Web)
-    participant S as Supabase (Docker no notebook)
-    participant C as Celular do jogador
+    participant S as Servidor (Dart shelf + Postgres)
+    participant C as Celular do jogador (APK)
 
-    M->>S: POST /rest/v1/sessoes (criar sessão)
-    S-->>M: 201 (código: ABC123)
+    M->>S: POST /mesas (criar mesa)
+    S-->>M: 201 { id, codigo: "A7K2QP" }
     Note over M,C: Mestre informa código e IP aos jogadores
-    C->>S: entra na sessão / envia ficha (ver doc do APK)
-    M->>S: GET /rest/v1/fichas?sessao_id=eq.X (abrir painel / atualizar)
-    S-->>M: fichas em JSON (versão mais atual recebida dos celulares)
+    C->>S: GET /mesa/info (header X-Mesa-Codigo)
+    C->>S: POST /mesa/fichas (JSON + versão)
+    S-->>C: 201/200 { status }
+    M->>S: GET /mesas/<id>/fichas (abrir/atualizar painel)
+    S-->>M: fichas em JSON
 ```
 
-## 6. Tecnologias usadas (todas ancoradas nas aulas)
+## 7. Tecnologias usadas
 
-| Item | Escolha | Origem na aula |
+| Item | Escolha | Origem |
 |---|---|---|
-| Painel do mestre | Flutter (Web) + Cubit + Repository | Aulas 11/06–25/06 |
-| API do servidor | Supabase PostgREST (`/rest/v1`) com `apikey` | Aula 18/06-API |
-| Identificação | **Sem autenticação**: código de sessão + UUID gerado no app do jogador (Supabase Auth da aula 25/06 fica como evolução futura) | Simplificação do projeto |
-| Banco do servidor | PostgreSQL (do Supabase) | Aulas 18/06 e 25/06 (mesmo banco, agora local) |
-| Comunicação | HTTP + JSON (pacote `http`) | Aulas 18/06 e 25/06 |
-| Empacotamento | Docker Compose (Supabase self-hosted + nginx) | Exigência do projeto — único item fora do material de aula |
+| Painel do mestre | Flutter (Web) + Cubit + Repository + `http` | Aulas 11/06–25/06 |
+| API do servidor | **Dart + `shelf`/`shelf_router`** | Novo (linguagem das aulas; substitui PostgREST/Supabase) |
+| Banco do servidor | **PostgreSQL 16** em Docker | Aulas (mesmo banco, agora local e sem Supabase) |
+| Comunicação | HTTP + JSON (`http` / `dart:convert`) | Aulas 18/06 e 25/06 |
+| "Auth" do jogador | Código da mesa no header `X-Mesa-Codigo` | Simplificação do projeto |
+| Cache do mestre | `shared_preferences` (localStorage no Web) | Necessário no Web (sqflite não roda no navegador) |
+| Empacotamento | Docker Compose (Postgres + servidor Dart + nginx) | Exigência do projeto |

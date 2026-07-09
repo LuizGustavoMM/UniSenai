@@ -1,8 +1,10 @@
-# Arquitetura — APK do Jogador (App Flutter Android)
+# Arquitetura — APK do Jogador (App Flutter Android, como foi implementado)
 
-Aplicativo instalado no celular dos **jogadores** (o mestre não usa o APK). O celular se conecta à rede Wi-Fi criada pelo notebook do mestre; a ficha do personagem vive **primeiro no banco local do celular** (sqflite) e o próprio app é o responsável por **exportá-la em JSON e sincronizá-la** com o servidor quando conectado.
+Aplicativo instalado no celular dos **jogadores** (o mestre não usa o APK). O celular se conecta à rede do notebook do mestre; a ficha vive **primeiro no banco local do celular** (sqflite) e o próprio app **exporta em JSON e sincroniza** com o servidor quando há rede.
 
-> **Escopo atual:** o app só conecta fichas às sessões e as mantém sincronizadas, **sem autenticação** — o jogador entra com o **código disponibilizado pelo mestre ao iniciar a sessão**. Pode participar de várias sessões, com **uma ficha por sessão**, e vê **somente as próprias fichas**. A ficha é tratada como uma estrutura genérica (nome + JSON versionado) — **o conteúdo e o processo de criação da ficha serão definidos depois** sem impacto nesta arquitetura, pois o JSON é opaco para o sync e para o servidor.
+> **Sem autenticação.** O jogador entra na mesa com o **código** fornecido pelo mestre, enviado no header `X-Mesa-Codigo`. Pode participar de **várias mesas**, com **uma ficha por mesa**. A identidade é um **UUID gerado no app** (na 1ª execução) + um **apelido** — sem login. A ficha é, nesta versão inicial, um **texto livre** guardado como JSON (`{"conteudo": "..."}`), versionado.
+>
+> Alvo validado: **Xiaomi Mi 13, Android 14** (build UKQ1.231207.002). APK release assinado com a chave de debug (instalação por "fontes desconhecidas").
 
 ---
 
@@ -14,129 +16,129 @@ flowchart LR
         UI["presentation<br/>telas"]
         CUBIT["logic<br/>Cubits + States"]
         REPO["data<br/>Repositories"]
-        DB[("sqflite<br/>banco local<br/>sessões + fichas versionadas")]
+        DB[("sqflite<br/>jogador, mesas, fichas versionadas")]
         UI --> CUBIT --> REPO
         REPO <--> DB
     end
 
-    SRV["Servidor no notebook do mestre<br/>Supabase em Docker<br/>http://IP_NOTEBOOK:8000"]
+    SRV["Servidor no notebook do mestre<br/>Dart shelf + PostgreSQL (Docker)<br/>http://IP_NOTEBOOK:8000"]
 
-    REPO -- "HTTP + JSON<br/>(sessões, sync de ficha)" --> SRV
+    REPO -->|"HTTP + JSON<br/>header X-Mesa-Codigo"| SRV
 ```
 
-Fluxo de dados idêntico ao das aulas: `Screen → Cubit → Repository → (sqflite | http) → State → Screen (BlocBuilder)`.
+Fluxo idêntico ao das aulas: `Screen → Cubit → Repository → (sqflite | http) → State → Screen (BlocBuilder)`.
 
-## 2. Estrutura do app (padrão do professor)
+## 2. Estrutura do app (`app-jogador/`)
 
 ```
 lib/
-├── main.dart                          # MultiRepositoryProvider + MultiBlocProvider + rotas nomeadas
+├── main.dart                         # MultiRepositoryProvider + MultiBlocProvider; _Gate decide a tela inicial
 ├── data/
 │   ├── local/
-│   │   └── database_helper.dart       # singleton sqflite (padrão da aula "codigo sqlite")
+│   │   └── database_helper.dart      # singleton sqflite (padrão da aula "codigo sqlite")
 │   ├── models/
-│   │   ├── jogador_model.dart         # uuid gerado no app + apelido (identidade local, sem login)
-│   │   ├── sessao_model.dart
-│   │   └── ficha_model.dart           # fromJson/toJson — o toJson É o formato exportado ao servidor
+│   │   ├── jogador_model.dart        # uuid + apelido
+│   │   ├── mesa_model.dart           # id, codigo, nome, ip_servidor
+│   │   └── ficha_model.dart          # dados_json, versao, sincronizada; paraEnvio() = corpo do POST
 │   └── repositories/
-│       ├── jogador_repository.dart    # gera/lê o uuid e o apelido no sqflite
-│       ├── sessao_repository.dart     # valida código, grava pareamento, lista sessões locais
-│       ├── ficha_local_repository.dart# CRUD da ficha no sqflite (incrementa versão a cada save)
-│       └── ficha_sync_repository.dart # exporta JSON e sincroniza com o servidor
+│       ├── jogador_repository.dart   # gera/lê o uuid + apelido no sqflite
+│       ├── mesa_repository.dart      # valida código (GET /mesa/info) e salva a mesa local
+│       └── ficha_repository.dart     # CRUD local (incrementa versão) + sincronização com o servidor
 ├── logic/
-│   ├── sessao_cubit.dart / sessao_state.dart
-│   ├── ficha_cubit.dart / ficha_state.dart
-│   └── sync_cubit.dart / sync_state.dart   # estados: SyncIdle / Syncing / Synced / SyncError(pendente)
+│   ├── jogador_cubit.dart / _state   # JogadorCarregando / SemJogador / ComJogador
+│   ├── mesa_cubit.dart / _state      # Carregando / Carregada / Erro
+│   └── ficha_cubit.dart / _state     # Inicial / Salvando / Salva / Erro
 └── presentation/screens/
-    ├── minhas_sessoes_screen.dart     # "Minhas sessões RPG"
-    ├── entrar_sessao_screen.dart      # IP do servidor + código da sessão
-    └── ficha_screen.dart              # criar/editar a ficha da sessão (estrutura mínima por enquanto)
+    ├── identidade_screen.dart        # 1ª execução: apelido (gera o UUID)
+    ├── minhas_mesas_screen.dart      # "Minhas mesas" (lista local) + FAB "Entrar em mesa"
+    ├── entrar_mesa_screen.dart       # endereço do servidor (IP) + código
+    └── ficha_screen.dart             # nome + caixa de texto livre; salvar e sincronizar
 ```
+
+`android/app/src/main/AndroidManifest.xml`: permissão **INTERNET** + `android:usesCleartextTraffic="true"` (a API é `http://` na rede local).
 
 ## 3. Banco local (sqflite) — fonte primária da ficha
 
-Segue o `DatabaseHelper` singleton da aula, com duas tabelas:
-
 ```mermaid
 erDiagram
-    SESSAO_LOCAL ||--o| FICHA_LOCAL : "tem"
+    MESA_LOCAL ||--o| FICHA_LOCAL : "tem"
     JOGADOR_LOCAL {
-        text jogador_id PK "uuid gerado na primeira execução"
+        text id PK "uuid gerado na 1ª execução"
         text apelido
     }
-    SESSAO_LOCAL {
-        text id PK "uuid da sessão no servidor"
-        text nome
+    MESA_LOCAL {
+        text id PK "uuid da mesa no servidor"
         text codigo
-        text ip_servidor "para reconectar depois"
+        text nome
+        text ip_servidor "para reconectar"
         text joined_at
     }
     FICHA_LOCAL {
         text id PK "uuid gerado no celular"
-        text sessao_id FK
-        text jogador_id "uuid do JOGADOR_LOCAL"
+        text mesa_id FK
+        text jogador_id
         text nome_personagem
-        text dados_json "ficha completa serializada (toJson)"
-        integer versao "incrementa a cada alteração salva"
+        text dados_json "conteúdo livre serializado"
+        integer versao "incrementa a cada save"
         integer sincronizada "0/1 — pendência de envio"
         text updated_at
     }
 ```
 
-- A tela **"Minhas sessões RPG"** é alimentada por `SESSAO_LOCAL` — funciona mesmo sem rede, mostrando toda sessão em que o jogador já entrou.
-- **Toda alteração salva na ficha**: regrava `dados_json`, faz `versao = versao + 1` e marca `sincronizada = 0`.
-- A ficha inteira trafega e é armazenada como **JSON** (formato de exportação escolhido; gerado pelo `toJson()` do model, como nas aulas).
+- A tela **"Minhas mesas"** é alimentada por `MESA_LOCAL` — funciona sem rede.
+- Cada save da ficha regrava `dados_json`, faz `versao = versao + 1` e marca `sincronizada = 0`.
+- `FICHA_LOCAL` é **única por `mesa_id`** → uma ficha por mesa.
 
 ## 4. Fluxos do jogador
 
-1. **Identidade local (sem login)** — na primeira execução o app gera um `jogador_id` (UUID) e pede um apelido; ficam no sqflite (`JOGADOR_LOCAL`) e acompanham todo pareamento e ficha enviados ao servidor.
-2. **Entrar em sessão** — informa IP do servidor (uma vez) + **código da sessão fornecido pelo mestre** → app valida em `/rest/v1/sessoes?codigo=eq.ABC123`, grava o pareamento (`jogador_id` + apelido) em `/rest/v1/sessao_jogadores` e salva a sessão em `SESSAO_LOCAL`. Jogador pareado.
-3. **Minhas sessões RPG** — lista local; ao tocar numa sessão, abre a ficha daquela sessão (ou a criação, se ainda não existir). O jogador só vê as próprias fichas.
-4. **Criar ficha** — por enquanto, estrutura mínima (nome do personagem + corpo em JSON); grava no sqflite com `versao = 1`. *O que a ficha contém e como será o auxílio de criação ficam para uma etapa futura — só muda o conteúdo de `dados_json`, sem alterar o sync.*
-5. **Editar ficha** — sempre salva localmente primeiro (nunca depende da rede), incrementando a versão.
+1. **Identidade local (sem login)** — 1ª execução: o app gera um `id` (UUID) e pede um `apelido`; ficam em `JOGADOR_LOCAL`. O UUID é o `jogador_id` enviado ao servidor.
+2. **Entrar em mesa** — informa o **endereço do servidor** (IP do notebook, ex.: `http://192.168.137.1:8000`) + o **código**. O app valida em `GET /mesa/info` (header `X-Mesa-Codigo`) e salva em `MESA_LOCAL`.
+3. **Minhas mesas** — lista local; tocar abre a ficha daquela mesa.
+4. **Criar/editar ficha** — campo "Nome do personagem" + **caixa de texto livre** (com um modelo de campos pré-preenchido). Salva sempre local primeiro (nunca depende da rede), incrementando a versão.
 
-## 5. Sincronização — responsabilidade do app do celular
+## 5. Sincronização — responsabilidade do app
 
-Gatilhos de envio (`SyncCubit` → `ficha_sync_repository`):
-
-- **Ao conectar** na rede do mestre / abrir uma sessão;
-- **A cada alteração salva** na ficha (se houver rede; senão fica `sincronizada = 0` e tenta no próximo gatilho).
+Gatilho: **ao salvar** a ficha. O app grava local (`sincronizada = 0`) e faz `POST /mesa/fichas` com o corpo `{jogador_id, nome_personagem, versao, dados}` e o header `X-Mesa-Codigo`. **O servidor decide** ("maior versão vence"): se não tiver aquela versão, grava. Em caso de `2xx`, o app marca `sincronizada = 1`.
 
 ```mermaid
 sequenceDiagram
-    participant A as APK (SyncCubit)
+    participant A as APK (FichaCubit)
     participant L as sqflite local
-    participant S as Servidor (Supabase no notebook)
+    participant S as Servidor (notebook)
 
-    A->>L: lê ficha (dados_json, versao local)
-    A->>S: GET /rest/v1/fichas?id=eq.<uuid>&select=versao
-    alt ficha não existe no servidor
-        A->>S: POST /rest/v1/fichas (JSON completo + versao)
-    else versao do servidor < versao local
-        A->>S: PATCH /rest/v1/fichas?id=eq.<uuid> (JSON completo + versao)
-    else versões iguais
-        A->>A: nada a fazer
+    A->>L: salva ficha (dados_json, versao+1, sincronizada=0)
+    A->>S: POST /mesa/fichas (header X-Mesa-Codigo, JSON + versao)
+    alt 200/201 (criada/atualizada/inalterada)
+        A->>L: sincronizada = 1
+    else sem rede / erro
+        Note over A,L: fica sincronizada = 0; reenvia no próximo save
     end
-    S-->>A: 200/201
-    A->>L: marca sincronizada = 1
-    Note over A,S: Falhou a rede? Ficha continua local com sincronizada = 0;<br/>novo envio no próximo gatilho (padrão offline da aula "codigo sqlite")
 ```
 
-Regras do modelo (simples de defender no trabalho):
+Regras do modelo:
 
-- **O celular é a fonte da verdade da ficha** — só o dono edita; o servidor guarda a cópia mais recente para o mestre consultar.
-- **Maior versão vence**: o servidor nunca sobrescreve o celular; o celular atualiza o servidor quando está à frente.
-- É a extensão natural do padrão visto em aula: lá, nuvem→local (cache offline); aqui, acrescenta-se **local→servidor com número de versão**.
+- **O celular é a fonte da verdade da ficha**; o servidor guarda a cópia mais recente para o mestre consultar.
+- **Maior versão vence**: o servidor nunca sobrescreve o celular com uma versão menor.
+- Extensão do padrão de cache offline das aulas, acrescentando **versão + envio local→servidor**.
 
-## 6. Tecnologias usadas (todas ancoradas nas aulas)
+## 6. Tecnologias usadas
 
-| Item | Escolha | Origem na aula |
+| Item | Escolha | Origem |
 |---|---|---|
-| App Android (APK) | Flutter + camadas `data/logic/presentation` | Todas as aulas |
-| Gestão de estado | Cubit (`flutter_bloc`), estados Initial/Loading/Loaded/Error, `BlocBuilder`/`BlocConsumer` | 11/06, 18/06, 25/06 |
-| Banco local | `sqflite` + `path`, `DatabaseHelper` singleton | "codigo sqlite" |
-| Comunicação | `http` + `dart:convert` (JSON), filtros PostgREST `?col=eq.valor` | 18/06-API, 25/06 |
-| Identificação | **Sem autenticação**: UUID gerado no app + apelido + código de sessão | Simplificação do projeto (Supabase Auth da aula 25/06 fica como evolução futura) |
-| Exportação da ficha | JSON via `toJson()` do model | 18/06-API |
-| Offline + sync | Padrão de cache offline da aula, estendido com versionamento | "codigo sqlite" |
-| Navegação | Rotas nomeadas + `arguments` | 25/06 |
+| App Android (APK) | Flutter + camadas `data/logic/presentation` | Aulas |
+| Gestão de estado | Cubit (`flutter_bloc`), `BlocBuilder`/`BlocConsumer` | Aulas 11/06–25/06 |
+| Banco local | `sqflite` + `path`, `DatabaseHelper` singleton | Aula "codigo sqlite" |
+| Comunicação | `http` + `dart:convert` (JSON) | Aulas 18/06 e 25/06 |
+| Identificação | **Sem login**: UUID gerado no app + apelido + código da mesa (header) | Simplificação do projeto |
+| Build | `flutter build apk --release` via Docker (`ghcr.io/cirruslabs/flutter`) | Sem Flutter local |
+
+## 7. Build e instalação
+
+```bash
+docker run --rm -v "$(pwd)/app-jogador:/app" -w /app \
+  ghcr.io/cirruslabs/flutter:stable \
+  bash -c "flutter clean && flutter pub get && flutter build apk --release"
+# APK: app-jogador/build/app/outputs/flutter-apk/app-release.apk
+```
+
+Copiar o `.apk` para o celular e instalar habilitando "instalar de fontes desconhecidas".

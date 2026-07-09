@@ -137,15 +137,84 @@ Sem Flutter instalado localmente, compila-se via Docker (mesma imagem do build w
 
 ```bash
 docker run --rm -v "$(pwd)/app-jogador:/app" -w /app \
-  ghcr.io/cirruslabs/flutter:stable flutter build apk --release
+  ghcr.io/cirruslabs/flutter:stable \
+  bash -c "flutter clean && flutter pub get && flutter build apk --release"
 # APK gerado em: app-jogador/build/app/outputs/flutter-apk/app-release.apk
 ```
+> Use `flutter clean` no mesmo comando: rodar `analyze` e `build` em contêineres separados sobre o mesmo volume pode deixar artefatos inconsistentes e quebrar o build (erro `'Matrix4' isn't a type`).
 
 Instalar no aparelho (testado com Xiaomi Mi 13, Android 14): copiar o `.apk` para o celular e instalar habilitando "instalar de fontes desconhecidas". O manifest declara `INTERNET` e `usesCleartextTraffic="true"` (a API é `http://` na rede local).
 
 ## Rede (uso em mesa real)
 
 O mestre usa o painel em `http://localhost:8080`. Os celulares dos jogadores acessam a **API** pelo IP do notebook na rede local (ex.: hotspot do Windows `192.168.137.1`), em `http://IP_DO_NOTEBOOK:8000`. O mestre informa aos jogadores esse IP e o **código** da mesa.
+
+## Testar localmente sem o celular
+
+Como a "autenticação" do jogador é só o código no header, dá para **simular o jogador por HTTP** (Postman/curl) sem o APK — testa exatamente o mesmo contrato que o app usa:
+
+```bash
+docker compose up -d
+# 1) Mestre cria a mesa (ou crie pelo painel) e pegue o código:
+CODIGO=$(curl -s -X POST http://localhost:8000/mesas -H 'Content-Type: application/json' \
+  -d '{"nome":"Mesa de Teste"}' | grep -o '"codigo":"[^"]*"' | cut -d'"' -f4)
+# 2) Jogador entra e envia a ficha (como o APK faria):
+curl -s http://localhost:8000/mesa/info -H "X-Mesa-Codigo: $CODIGO"
+curl -s -X POST http://localhost:8000/mesa/fichas -H "X-Mesa-Codigo: $CODIGO" \
+  -H 'Content-Type: application/json' \
+  --data-binary '{"jogador_id":"jog-1","nome_personagem":"Aragorn","versao":1,"dados":{"conteudo":"Raca: Humano\nClasse: Guardiao"}}'
+```
+Depois abra o painel em `http://localhost:8080`, entre na mesa e atualize — a ficha aparece.
+(Para clicar na UI real do jogador sem device, seria preciso adicionar suporte **web** ao `app-jogador` — trocando o sqflite pela versão web. Ainda não feito; ver To-Do.)
+
+## Requisitos
+
+### Funcionais
+
+| # | Requisito | Status |
+|---|---|---|
+| RF01 | Mestre cria uma mesa com nome; o sistema gera **código único** + **id interno** | ✅ |
+| RF02 | Mestre vê a lista das suas mesas (cache do navegador) | ✅ |
+| RF03 | Mestre abre uma mesa e vê **todas as fichas** dos jogadores | ✅ |
+| RF04 | Jogador tem identidade local (UUID + apelido), **sem login** | ✅ |
+| RF05 | Jogador entra na mesa por **IP do servidor + código** | ✅ |
+| RF06 | Jogador cria/edita a ficha (nome + texto livre) | ✅ |
+| RF07 | Ficha salva localmente com **versão incremental** (sqflite) | ✅ |
+| RF08 | Sincronização **"maior versão vence"** com o servidor | ✅ |
+| RF09 | Jogador participa de **várias mesas**, uma ficha por mesa | ✅ |
+| RF10 | API testável por Postman (código no header `X-Mesa-Codigo`) | ✅ |
+| RF11 | Ficha **estruturada** (campos de RPG) em vez de texto livre | ⏳ |
+| RF12 | Encerrar/remover mesa pela UI do mestre (API já tem `DELETE`) | ⏳ |
+| RF13 | "Testar conexão" e editar o endereço do servidor no app | ⏳ |
+| RF14 | Atualização automática/pull-to-refresh das fichas no painel | ⏳ |
+
+### Não funcionais
+
+| # | Requisito | Status |
+|---|---|---|
+| RNF01 | Funciona em **rede local sem internet** | ✅ |
+| RNF02 | App do celular **offline-first** (sqflite; salva sem rede) | ✅ |
+| RNF03 | Empacotamento em **Docker Compose** (db + servidor + web) | ✅ |
+| RNF04 | Tecnologias das aulas (Flutter, Cubit, `http`, `sqflite`) + `shelf`/`postgres` | ✅ |
+| RNF05 | APK roda em **Android 14** (Xiaomi Mi 13) | ✅ |
+| RNF06 | Arquitetura em camadas `data / logic / presentation` | ✅ |
+| RNF07 | API com CORS e erros padronizados em JSON | ✅ |
+| RNF08 | Endereço da API configurável no build web (`--dart-define API_URL`) | ✅ |
+| RNF09 | HTTPS / segurança de transporte | ⏳ |
+| RNF10 | Testes automatizados (unit/integração) | ⏳ |
+
+## To-Do (próximas implementações)
+
+- [ ] **Ficha estruturada** — substituir o texto livre por campos de RPG (raça, classe, atributos, equipamentos…); o servidor continua tratando `dados` como JSON opaco (RF11).
+- [ ] **Encerrar mesa no painel** do mestre, usando `DELETE /mesas/<id>` (RF12).
+- [ ] **App do jogador:** botão "testar conexão" (GET `/`), editar o endereço do servidor depois de entrar, e exibir UUID/apelido (RF13).
+- [ ] **Atualização das fichas** no painel: pull-to-refresh / polling automático (RF14).
+- [ ] **Reenvio automático** de fichas pendentes (`sincronizada = 0`) ao reconectar, sem depender de novo save.
+- [ ] **Suporte web no `app-jogador`** para testar a UI sem device (trocar sqflite por `sqflite_common_ffi_web`).
+- [ ] **Autenticação** de verdade (evolução; hoje é só o código da mesa).
+- [ ] **HTTPS** e/ou validação de origem (RNF09).
+- [ ] **Testes automatizados** do servidor (rotas + regra de versão) e dos repositórios (RNF10).
+- [ ] **Melhorar diagnóstico de rede** no app (mensagens claras para firewall/isolamento de clientes).
 
 ## Estado do projeto
 
