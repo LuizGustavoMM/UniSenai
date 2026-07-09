@@ -2,7 +2,7 @@
 
 Projeto da disciplina DSMD. Sistema para gerenciar **mesas de RPG**: o **mestre** cria mesas no navegador do notebook e vê as **fichas** de todos os jogadores; os **jogadores** (APK Android) entram em uma mesa pelo **código** e enviam suas fichas.
 
-> Este README documenta **o que já está implementado**, não o projeto original. A arquitetura anterior usava Supabase; **isso foi abandonado** — hoje o backend é uma **API própria em Dart (shelf)** com **PostgreSQL local**, sem Supabase.
+> Este README documenta **o que já está implementado**, não o projeto original. A arquitetura anterior usava Supabase; **isso foi abandonado** - hoje o backend é uma **API própria em Dart (shelf)** com **PostgreSQL local**, sem Supabase.
 
 ## Componentes (Docker Compose)
 
@@ -12,7 +12,7 @@ Projeto da disciplina DSMD. Sistema para gerenciar **mesas de RPG**: o **mestre*
 | `servidor` | API REST (JSON) | Dart + `shelf` / `shelf_router` + `postgres` | `8000` → 8080 no contêiner |
 | `web-mestre` | Painel do mestre | Flutter Web + `flutter_bloc` (Cubit) + `http`, servido por nginx | `8080` → 80 no contêiner |
 
-O **APK do jogador** (`app-jogador/`) **não** faz parte do Docker Compose — é um app Android instalado no celular, que fala com a API pela rede.
+O **APK do jogador** (`app-jogador/`) **não** faz parte do Docker Compose - é um app Android instalado no celular, que fala com a API pela rede.
 
 ```
 trabalho-flutter/
@@ -57,16 +57,16 @@ docker compose down            # parar (some com os dados: use "down -v" para ap
 
 As tabelas são criadas automaticamente pelo servidor no startup (`CREATE TABLE IF NOT EXISTS`).
 
-- **`mesas`** — `id` (UUID), `codigo` (TEXT único), `nome`, `created_at`.
-- **`fichas`** — `id` (UUID), `mesa_id` (FK → mesas), `jogador_id`, `nome_personagem`, `versao` (int), `dados` (JSONB opaco), `updated_at`. Única por `(mesa_id, jogador_id)`.
+- **`mesas`** - `id` (UUID), `codigo` (TEXT único), `nome`, `created_at`.
+- **`fichas`** - `id` (UUID), `mesa_id` (FK → mesas), `jogador_id`, `nome_personagem`, `versao` (int), `dados` (JSONB opaco), `updated_at`. Única por `(mesa_id, jogador_id)`.
 
-> Decisão: **uma tabela `fichas` com `mesa_id`** (em vez de uma tabela física por mesa) — isola as fichas por mesa de forma simples e escalável.
+> Decisão: **uma tabela `fichas` com `mesa_id`** (em vez de uma tabela física por mesa) - isola as fichas por mesa de forma simples e escalável.
 
 ## API
 
 Base: `http://localhost:8000`. Corpo e respostas em JSON.
 
-### Rotas do mestre (navegador em localhost — sem código)
+### Rotas do mestre (navegador em localhost - sem código)
 
 | Método | Rota | Descrição |
 |---|---|---|
@@ -76,7 +76,7 @@ Base: `http://localhost:8000`. Corpo e respostas em JSON.
 | `GET` | `/mesas/<id>/fichas` | Todas as fichas da mesa (visão do mestre). |
 | `DELETE` | `/mesas/<id>` | Remove a mesa (e suas fichas em cascata). |
 
-### Rotas do jogador (APK) — exigem o header `X-Mesa-Codigo`
+### Rotas do jogador (APK) - exigem o header `X-Mesa-Codigo`
 
 A "autenticação" do jogador é o **código da mesa no header** `X-Mesa-Codigo` (o mesmo que o mestre mostra na tela). Sem o header → `401`; código inválido → `403`.
 
@@ -119,17 +119,17 @@ curl http://localhost:8000/mesas/<ID_DA_MESA>/fichas
 - **Minhas mesas**: lista as mesas do **cache do navegador** (`shared_preferences` → localStorage). Como não há login, o cache é a "memória" do mestre. Tocar em uma mesa abre o painel.
 - **Painel da mesa**: mostra o código e busca no servidor (`GET /mesas/<id>/fichas`) **todas as fichas** dos jogadores; cada ficha é expansível e exibe o JSON.
 
-Arquitetura em camadas `data / logic / presentation` com Cubit (`flutter_bloc`) e `http` — mesmo padrão das aulas.
+Arquitetura em camadas `data / logic / presentation` com Cubit (`flutter_bloc`) e `http` - mesmo padrão das aulas.
 
 ## APK do jogador (Flutter Android)
 
 App instalado no celular do jogador (`app-jogador/`). Banco local em **sqflite** (`DatabaseHelper` singleton), estado com Cubit, comunicação por `http`.
 
 Fluxo:
-1. **Identidade local (sem login)** — na primeira execução o app gera um **UUID** e pede um **apelido** (guardados no sqflite). O UUID é o `jogador_id` enviado ao servidor.
-2. **Entrar em mesa** — informa o **endereço do servidor** (IP do notebook, ex.: `http://192.168.137.1:8000`) e o **código** da mesa. O app valida em `GET /mesa/info` (header `X-Mesa-Codigo`) e salva a mesa localmente.
-3. **Minhas mesas** — lista as mesas locais (funciona offline). Uma ficha por mesa.
-4. **Ficha** — campo "Nome do personagem" + uma **caixa de texto livre** (raça, subclasse, equipamentos etc.). Ao salvar: grava no sqflite incrementando a `versao` e marcando pendente; depois faz `POST /mesa/fichas`. O servidor decide ("maior versão vence"); em caso de sucesso a ficha vira "sincronizada". Sem rede, fica pendente e reenvia no próximo save.
+1. **Identidade local (sem login)** - na primeira execução o app gera um **UUID** e pede um **apelido** (guardados no sqflite). O UUID é o `jogador_id` enviado ao servidor.
+2. **Entrar em mesa** - informa o **endereço do servidor** (IP do notebook, ex.: `http://192.168.137.1:8000`) e o **código** da mesa. O app valida em `GET /mesa/info` (header `X-Mesa-Codigo`) e salva a mesa localmente.
+3. **Minhas mesas** - lista as mesas locais (funciona offline). Uma ficha por mesa.
+4. **Ficha** - campo "Nome do personagem" + uma **caixa de texto livre** (raça, subclasse, equipamentos etc.). Ao salvar: grava no sqflite incrementando a `versao` e marcando pendente; depois faz `POST /mesa/fichas`. O servidor decide ("maior versão vence"); em caso de sucesso a ficha vira "sincronizada". Sem rede, fica pendente e reenvia no próximo save.
 
 ### Build do APK
 
@@ -151,4 +151,4 @@ O mestre usa o painel em `http://localhost:8080`. Os celulares dos jogadores ace
 
 - ✅ Servidor (API + PostgreSQL) em Docker.
 - ✅ Painel do mestre (criar mesa, listar mesas do cache, ver fichas).
-- ✅ APK do jogador — versão inicial (identidade local, entrar por código, criar ficha em texto livre, salvar no sqflite e sincronizar por versão).
+- ✅ APK do jogador - versão inicial (identidade local, entrar por código, criar ficha em texto livre, salvar no sqflite e sincronizar por versão).
