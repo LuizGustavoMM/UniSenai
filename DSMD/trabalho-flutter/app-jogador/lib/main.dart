@@ -46,7 +46,7 @@ class AppJogador extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          title: 'Mesa D&D — Jogador',
+          title: 'Mesa D&D - Jogador',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             colorScheme:

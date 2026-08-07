@@ -1,0 +1,359 @@
+{
+  "info": {
+    "name": "Mesa D&D — API (aula)",
+    "description": "Demonstração da API do servidor (Dart + shelf). Ordem sugerida:\n1) Mestre → Criar mesa (captura codigo + mesaId automaticamente)\n2) Jogador → Entrar / Enviar ficha (v1, inalterada, v2)\n3) Mestre → Ver fichas da mesa\n4) Casos de erro (401/403/400)\n\nVariável baseUrl = http://localhost:8000 (troque pelo IP do notebook se testar de outro dispositivo).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8000" },
+    { "key": "codigo", "value": "" },
+    { "key": "mesaId", "value": "" },
+    { "key": "jogadorId", "value": "jog-demo-01" }
+  ],
+  "item": [
+    {
+      "name": "0. Health (GET /)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/", "host": ["{{baseUrl}}"], "path": [""] }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('API respondeu 200', () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "1. Mestre",
+      "item": [
+        {
+          "name": "Criar mesa (POST /mesas)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Tumba de Horrores\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/mesas", "host": ["{{baseUrl}}"], "path": ["mesas"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const j = pm.response.json();",
+                  "pm.collectionVariables.set('codigo', j.codigo);",
+                  "pm.collectionVariables.set('mesaId', j.id);",
+                  "pm.test('mesa criada (201)', () => pm.response.to.have.status(201));",
+                  "pm.test('gerou codigo', () => pm.expect(j.codigo).to.be.a('string'));",
+                  "console.log('Codigo da mesa:', j.codigo, '| id:', j.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar mesas (GET /mesas)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/mesas", "host": ["{{baseUrl}}"], "path": ["mesas"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('200', () => pm.response.to.have.status(200));",
+                "pm.test('retorna lista', () => pm.expect(pm.response.json()).to.be.an('array'));"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "Detalhe da mesa (GET /mesas/:id)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/mesas/{{mesaId}}", "host": ["{{baseUrl}}"], "path": ["mesas", "{{mesaId}}"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('200', () => pm.response.to.have.status(200));"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "Fichas da mesa (GET /mesas/:id/fichas)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/mesas/{{mesaId}}/fichas", "host": ["{{baseUrl}}"], "path": ["mesas", "{{mesaId}}", "fichas"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('200', () => pm.response.to.have.status(200));",
+                "console.log('Fichas da mesa:', pm.response.text());"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "Remover mesa (DELETE /mesas/:id)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/mesas/{{mesaId}}", "host": ["{{baseUrl}}"], "path": ["mesas", "{{mesaId}}"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('200', () => pm.response.to.have.status(200));"
+              ] }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. Jogador (APK) — header X-Mesa-Codigo",
+      "item": [
+        {
+          "name": "Entrar na mesa (GET /mesa/info)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Mesa-Codigo", "value": "{{codigo}}" }],
+            "url": { "raw": "{{baseUrl}}/mesa/info", "host": ["{{baseUrl}}"], "path": ["mesa", "info"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('entrou (200)', () => pm.response.to.have.status(200));",
+                "pm.test('retorna a mesa do codigo', () => pm.expect(pm.response.json().codigo).to.eql(pm.collectionVariables.get('codigo')));"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "Enviar ficha v1 -> criada (POST /mesa/fichas)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Mesa-Codigo", "value": "{{codigo}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jogador_id\": \"{{jogadorId}}\",\n  \"nome_personagem\": \"Aragorn\",\n  \"versao\": 1,\n  \"dados\": {\n    \"conteudo\": \"Raca: Humano\\nClasse: Guardiao\\nNivel: 5\\nEquipamentos: Anduril, Cota de malha\"\n  }\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/mesa/fichas", "host": ["{{baseUrl}}"], "path": ["mesa", "fichas"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('criada (201)', () => pm.response.to.have.status(201));",
+                "pm.test('status = criada', () => pm.expect(pm.response.json().status).to.eql('criada'));"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "Reenviar v1 -> inalterada (POST /mesa/fichas)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Mesa-Codigo", "value": "{{codigo}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jogador_id\": \"{{jogadorId}}\",\n  \"nome_personagem\": \"Aragorn\",\n  \"versao\": 1,\n  \"dados\": {\n    \"conteudo\": \"(mesma versao)\"\n  }\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/mesa/fichas", "host": ["{{baseUrl}}"], "path": ["mesa", "fichas"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('200', () => pm.response.to.have.status(200));",
+                "pm.test('status = inalterada', () => pm.expect(pm.response.json().status).to.eql('inalterada'));"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "Atualizar ficha v2 -> atualizada (POST /mesa/fichas)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Mesa-Codigo", "value": "{{codigo}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jogador_id\": \"{{jogadorId}}\",\n  \"nome_personagem\": \"Aragorn\",\n  \"versao\": 2,\n  \"dados\": {\n    \"conteudo\": \"Raca: Humano\\nClasse: Capitao de Gondor\\nNivel: 6\\nEquipamentos: Anduril, Escudo\"\n  }\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/mesa/fichas", "host": ["{{baseUrl}}"], "path": ["mesa", "fichas"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('200', () => pm.response.to.have.status(200));",
+                "pm.test('status = atualizada', () => pm.expect(pm.response.json().status).to.eql('atualizada'));"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "Segundo jogador -> criada (POST /mesa/fichas)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Mesa-Codigo", "value": "{{codigo}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jogador_id\": \"jog-demo-02\",\n  \"nome_personagem\": \"Legolas\",\n  \"versao\": 1,\n  \"dados\": {\n    \"conteudo\": \"Raca: Elfo\\nClasse: Arqueiro\\nEquipamentos: Arco longo, Adagas\"\n  }\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/mesa/fichas", "host": ["{{baseUrl}}"], "path": ["mesa", "fichas"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('criada (201)', () => pm.response.to.have.status(201));"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "Minha ficha (GET /mesa/fichas/:jogadorId)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Mesa-Codigo", "value": "{{codigo}}" }],
+            "url": { "raw": "{{baseUrl}}/mesa/fichas/{{jogadorId}}", "host": ["{{baseUrl}}"], "path": ["mesa", "fichas", "{{jogadorId}}"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('200', () => pm.response.to.have.status(200));"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "Todas as fichas da mesa (GET /mesa/fichas)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Mesa-Codigo", "value": "{{codigo}}" }],
+            "url": { "raw": "{{baseUrl}}/mesa/fichas", "host": ["{{baseUrl}}"], "path": ["mesa", "fichas"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('200', () => pm.response.to.have.status(200));"
+              ] }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3. Casos de erro",
+      "item": [
+        {
+          "name": "Sem header -> 401 (GET /mesa/info)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/mesa/info", "host": ["{{baseUrl}}"], "path": ["mesa", "info"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('sem header = 401', () => pm.response.to.have.status(401));"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "Codigo invalido -> 403 (GET /mesa/info)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Mesa-Codigo", "value": "ZZZZZZ" }],
+            "url": { "raw": "{{baseUrl}}/mesa/info", "host": ["{{baseUrl}}"], "path": ["mesa", "info"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('codigo invalido = 403', () => pm.response.to.have.status(403));"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "JSON malformado -> 400 (POST /mesa/fichas)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Mesa-Codigo", "value": "{{codigo}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{isso nao e json valido" },
+            "url": { "raw": "{{baseUrl}}/mesa/fichas", "host": ["{{baseUrl}}"], "path": ["mesa", "fichas"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('corpo invalido = 400', () => pm.response.to.have.status(400));"
+              ] }
+            }
+          ]
+        },
+        {
+          "name": "Campos faltando -> 400 (POST /mesa/fichas)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Mesa-Codigo", "value": "{{codigo}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"nome_personagem\": \"Sem jogador_id\"\n}" },
+            "url": { "raw": "{{baseUrl}}/mesa/fichas", "host": ["{{baseUrl}}"], "path": ["mesa", "fichas"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('faltou campo = 400', () => pm.response.to.have.status(400));"
+              ] }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
