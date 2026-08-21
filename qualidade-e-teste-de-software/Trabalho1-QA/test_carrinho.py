@@ -48,3 +48,22 @@ def test_frete_gratis_com_total_de_200():
     carrinho = CarrinhoDeCompras()
     carrinho.adicionar_item("Item", 200.0)
     assert carrinho.calcular_frete() == 0.0
+
+
+# Casos de exceção
+def test_adicionar_item_com_preco_negativo_gera_value_error():
+    carrinho = CarrinhoDeCompras()
+    with pytest.raises(ValueError):
+        carrinho.adicionar_item("Item", -10.0)
+
+
+def test_adicionar_item_com_preco_zero_gera_value_error():
+    carrinho = CarrinhoDeCompras()
+    with pytest.raises(ValueError):
+        carrinho.adicionar_item("Item", 0.0)
+
+
+def test_calcular_total_final_com_carrinho_vazio_gera_value_error():
+    carrinho = CarrinhoDeCompras()
+    with pytest.raises(ValueError):
+        carrinho.calcular_total_final()
