@@ -9,3 +9,11 @@ class CarrinhoDeCompras:
 
     def calcular_total_produtos(self) -> float:
         return sum(item["preco"] for item in self.itens)
+
+    def calcular_desconto(self) -> float:
+        total = self.calcular_total_produtos()
+        if total >= 500:
+            return total * 0.20
+        elif total >= 100:
+            return total * 0.10
+        return 0.0
