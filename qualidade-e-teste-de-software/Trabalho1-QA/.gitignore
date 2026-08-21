@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+relatorio.pdf
+Trabalho I QA - 2026.2.pdf
