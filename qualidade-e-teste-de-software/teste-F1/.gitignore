@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+
+# scripts auxiliares de montagem e demonstracao
+commits.sh
+demo_bugs.sh
