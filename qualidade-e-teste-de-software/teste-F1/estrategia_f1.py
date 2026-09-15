@@ -70,7 +70,7 @@ def escolher_composto(temp_asfalto, porcentagem_chuva, desgaste_pneu,
         return PNEU_WET
 
     if (temp_asfalto < LIMIAR_TEMPERATURA_SOFT
-            or desgaste_pneu >= LIMIAR_DESGASTE_SOFT):
+            and desgaste_pneu >= LIMIAR_DESGASTE_SOFT):
         return PNEU_SOFT
 
     if (temp_asfalto >= LIMIAR_TEMPERATURA_SOFT
