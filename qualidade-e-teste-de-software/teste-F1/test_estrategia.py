@@ -18,6 +18,10 @@ from estrategia_f1 import (
     PNEU_SOFT,
     PNEU_WET,
     calcular_estrategia_pit_stop,
+    calcular_volta_parada,
+    escolher_composto,
+    validar_entradas,
+    verificar_alerta_emergencia,
 )
 
 
@@ -294,3 +298,88 @@ class TestContratoDeRetorno:
         cedo = calcular_estrategia_pit_stop(60, 30, 10, 70)
         tarde = calcular_estrategia_pit_stop(60, 30, 10, 20)
         assert cedo["volta_pit_stop"] < tarde["volta_pit_stop"]
+
+
+# =========================================================================
+# ETAPA 2. TESTES DE CAIXA BRANCA (ESTRUTURAIS)
+# =========================================================================
+
+
+class TestCaixaBrancaValidarEntradas:
+    """Exercita diretamente cada ramo de validar_entradas."""
+
+    def test_cp25_entradas_validas_nao_lancam_excecao(self):
+        """CP25 - Ramo falso das duas condicoes de validacao."""
+        assert validar_entradas(50, 30) is None
+
+    def test_cp26_ramo_de_voltas_abaixo_do_minimo(self):
+        """CP26 - Primeira sub-condicao do primeiro if."""
+        with pytest.raises(ValueError):
+            validar_entradas(29, 30)
+
+    def test_cp27_ramo_de_voltas_acima_do_maximo(self):
+        """CP27 - Segunda sub-condicao do primeiro if."""
+        with pytest.raises(ValueError):
+            validar_entradas(81, 30)
+
+    def test_cp28_ramo_de_temperatura_abaixo_do_minimo(self):
+        """CP28 - Primeira sub-condicao do segundo if."""
+        with pytest.raises(ValueError):
+            validar_entradas(50, 9)
+
+    def test_cp29_ramo_de_temperatura_acima_do_maximo(self):
+        """CP29 - Segunda sub-condicao do segundo if."""
+        with pytest.raises(ValueError):
+            validar_entradas(50, 61)
+
+
+class TestCaixaBrancaCalcularVoltaParada:
+    """Exercita os ramos do calculo da janela de parada."""
+
+    def test_cp30_ramo_normal_sem_saturacao(self):
+        """CP30 - volta calculada permanece dentro da corrida."""
+        assert calcular_volta_parada(60, 50) == 30
+
+    def test_cp31_ramo_de_saturacao_no_minimo(self):
+        """CP31 - Desgaste total levaria a volta 0; deve saturar em 1."""
+        assert calcular_volta_parada(30, 100) == 1
+
+    def test_cp32_arredondamento_da_janela(self):
+        """CP32 - A janela fracionaria e arredondada para volta inteira."""
+        assert calcular_volta_parada(45, 33) == 30
+
+
+class TestCaixaBrancaEscolherComposto:
+    """Exercita os quatro caminhos de saida de escolher_composto."""
+
+    def test_cp33_caminho_1_retorna_wet(self):
+        """CP33 - Primeiro if verdadeiro."""
+        assert escolher_composto(30, 50, 20, 10) == PNEU_WET
+
+    def test_cp34_caminho_2_retorna_soft(self):
+        """CP34 - Primeiro if falso, segundo if verdadeiro."""
+        assert escolher_composto(20, 10, 70, 10) == PNEU_SOFT
+
+    def test_cp35_caminho_3_retorna_hard_por_temperatura(self):
+        """CP35 - Terceiro if verdadeiro pela primeira sub-condicao."""
+        assert escolher_composto(25, 10, 50, 10) == PNEU_HARD
+
+    def test_cp36_caminho_3_retorna_hard_por_voltas_restantes(self):
+        """CP36 - Terceiro if verdadeiro pela segunda sub-condicao."""
+        assert escolher_composto(20, 10, 50, 31) == PNEU_HARD
+
+    def test_cp37_caminho_4_retorna_soft_por_padrao(self):
+        """CP37 - Todos os ifs falsos: retorno final da funcao."""
+        assert escolher_composto(20, 10, 50, 30) == PNEU_SOFT
+
+
+class TestCaixaBrancaVerificarAlerta:
+    """Exercita os dois resultados de verificar_alerta_emergencia."""
+
+    def test_cp38_alerta_verdadeiro_no_limite(self):
+        """CP38 - Valor limite inferior do alerta."""
+        assert verificar_alerta_emergencia(80) is True
+
+    def test_cp39_alerta_falso_logo_abaixo_do_limite(self):
+        """CP39 - Valor imediatamente abaixo do limite."""
+        assert verificar_alerta_emergencia(79) is False
