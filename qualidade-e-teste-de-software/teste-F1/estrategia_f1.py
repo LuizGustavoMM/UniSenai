@@ -35,7 +35,7 @@ def validar_entradas(voltas_totais, temp_asfalto):
     Levanta ValueError quando o número total de voltas está fora do
     intervalo [30, 80] ou a temperatura do asfalto fora de [10, 60].
     """
-    if voltas_totais <= VOLTAS_MINIMAS or voltas_totais >= VOLTAS_MAXIMAS:
+    if voltas_totais < VOLTAS_MINIMAS or voltas_totais > VOLTAS_MAXIMAS:
         raise ValueError(
             "voltas_totais deve estar entre "
             f"{VOLTAS_MINIMAS} e {VOLTAS_MAXIMAS} (inclusive)."
