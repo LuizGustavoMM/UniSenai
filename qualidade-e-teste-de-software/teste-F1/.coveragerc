@@ -1,0 +1,10 @@
+[run]
+branch = True
+source = estrategia_f1
+
+[report]
+show_missing = True
+skip_empty = True
+
+[html]
+directory = htmlcov
