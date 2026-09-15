@@ -66,7 +66,7 @@ def calcular_volta_parada(voltas_totais, desgaste_pneu):
 def escolher_composto(temp_asfalto, porcentagem_chuva, desgaste_pneu,
                       voltas_restantes):
     """Seleciona o composto de pneu ideal segundo as regras de negócio."""
-    if porcentagem_chuva > LIMIAR_CHUVA_WET:
+    if porcentagem_chuva >= LIMIAR_CHUVA_WET:
         return PNEU_WET
 
     if (temp_asfalto < LIMIAR_TEMPERATURA_SOFT
