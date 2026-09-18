@@ -1,0 +1,3490 @@
+[
+  {
+    "prefixo": "site1",
+    "nome": "ICL Notícias",
+    "url": "https://iclnoticias.com.br/",
+    "coletadoEm": "2026-09-18T20:45:30",
+    "arquivoAxe": "site1_acess.json",
+    "totalViolacoes": 6,
+    "violacoes": [
+      {
+        "id": "color-contrast",
+        "impacto": "serious",
+        "descricao": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+        "ajuda": "Elements must have sufficient color contrast",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+        "criterios": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "ocorrencias": 1,
+        "exemplos": [
+          {
+            "seletor": [
+              ".btn-member > a[target=\"_blank\"]"
+            ],
+            "html": "<a href=\"https://iclnoticias.com.br/membro/\" target=\"_blank\">Seja Membro ICL</a>",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 2.87 (foreground color: #ffffff, background color: #30a1e0, font size: 7.9pt, font weight: bold). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "heading-order",
+        "impacto": "moderate",
+        "descricao": "Ensures the order of headings is semantically correct",
+        "ajuda": "Heading levels should only increase by one",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 7,
+        "exemplos": [
+          {
+            "seletor": [
+              "#eleicoes > .container > .row:nth-child(1) > .c-xs-12 > .title-section-w.title-section.f-items-center > .title-border"
+            ],
+            "html": "<h4 class=\"title-border\">Eleições</h4>",
+            "motivo": "Fix any of the following:\n  Heading order invalid"
+          },
+          {
+            "seletor": [
+              "#colunistas > .container > .row > .c-xs-12 > .title-section.f-items-center.f-grid > .title-border"
+            ],
+            "html": "<h4 class=\"title-border text-main-dark\">Colunistas ICL</h4>",
+            "motivo": "Fix any of the following:\n  Heading order invalid"
+          },
+          {
+            "seletor": [
+              "#videos > .container > .row:nth-child(1) > .c-xs-12 > .title-section-w.title-section.f-items-center > .title-border"
+            ],
+            "html": "<h4 class=\"title-border\">Vídeos</h4>",
+            "motivo": "Fix any of the following:\n  Heading order invalid"
+          }
+        ]
+      },
+      {
+        "id": "image-redundant-alt",
+        "impacto": "minor",
+        "descricao": "Ensure button and link text is not repeated as image alternative",
+        "ajuda": "Text of buttons and links should not be repeated in the image alternative",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/image-redundant-alt?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 5,
+        "exemplos": [
+          {
+            "seletor": [
+              ".item-video > a:nth-child(1)"
+            ],
+            "html": "<a href=\"https://iclnoticias.com.br/video/aliados-de-bolsonaro-estao-na-lista-de-pagamentos-de-investigacao-contra-bicheiros/\">",
+            "motivo": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text"
+          },
+          {
+            "seletor": [
+              ".c-sm-6.c-xs-12:nth-child(1) > a"
+            ],
+            "html": "<a href=\"https://iclnoticias.com.br/video/turma-do-kn-vorcaro-teria-reservado-mansao-de-r-250-milhoes-para-ministro/\">",
+            "motivo": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text"
+          },
+          {
+            "seletor": [
+              ".c-sm-6.c-xs-12:nth-child(2) > a"
+            ],
+            "html": "<a href=\"https://iclnoticias.com.br/video/relacao-de-flavio-bolsonaro-com-willer-tomaz-preocupa-o-senador/\">",
+            "motivo": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text"
+          }
+        ]
+      },
+      {
+        "id": "label",
+        "impacto": "critical",
+        "descricao": "Ensures every form element has a label",
+        "ajuda": "Form elements must have labels",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag332",
+          "wcag131"
+        ],
+        "ocorrencias": 1,
+        "exemplos": [
+          {
+            "seletor": [
+              "#inf_field_email_Open"
+            ],
+            "html": "<input class=\"infusion-field-input\" id=\"inf_field_email_Open\" name=\"inf_field_Email\" placeholder=\"Digite seu melhor e-mail\" type=\"email\" required=\"\">",
+            "motivo": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <lab"
+          }
+        ]
+      },
+      {
+        "id": "link-name",
+        "impacto": "serious",
+        "descricao": "Ensures links have discernible text",
+        "ajuda": "Links must have discernible text",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/link-name?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag412",
+          "wcag244"
+        ],
+        "ocorrencias": 4,
+        "exemplos": [
+          {
+            "seletor": [
+              ".news-home.news-conhecimento.c-md-3:nth-child(1) > .news-wrap > .news-thumb-outer > a"
+            ],
+            "html": "<a href=\"https://iclnoticias.com.br/conhecimento/julgamento-stf-o-que-aconteceu-em-2026/\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do no"
+          },
+          {
+            "seletor": [
+              ".news-home.news-conhecimento.c-md-3:nth-child(2) > .news-wrap > .news-thumb-outer > a"
+            ],
+            "html": "<a href=\"https://iclnoticias.com.br/conhecimento/habito-de-leitura/\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do no"
+          },
+          {
+            "seletor": [
+              ".news-home.news-conhecimento.c-md-3:nth-child(3) > .news-wrap > .news-thumb-outer > a"
+            ],
+            "html": "<a href=\"https://iclnoticias.com.br/conhecimento/livros-proibidos/\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do no"
+          }
+        ]
+      },
+      {
+        "id": "region",
+        "impacto": "moderate",
+        "descricao": "Ensures all page content is contained by landmarks",
+        "ajuda": "All page content must be contained by landmarks",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 1,
+        "exemplos": [
+          {
+            "seletor": [
+              "html"
+            ],
+            "html": "<html class=\"go-js\" lang=\"pt-BR\">",
+            "motivo": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        ]
+      }
+    ],
+    "estrutura": {
+      "botoesSemNome": 0,
+      "campoBusca": {
+        "existe": false
+      },
+      "dialogoAberto": 0,
+      "h1": [
+        ""
+      ],
+      "iframesSemTitle": 1,
+      "imagens": {
+        "altVazio": 4,
+        "semAlt": 0,
+        "total": 81
+      },
+      "landmarks": {
+        "aside": 0,
+        "footer": 1,
+        "header": 1,
+        "main": 1,
+        "nav": 2,
+        "search": 0
+      },
+      "lang": "pt-BR",
+      "linkDePular": {
+        "pareceLinkDePular": false,
+        "texto": "MENU"
+      },
+      "linksSemTexto": 5,
+      "primeirosTitulos": [
+        {
+          "nivel": 1,
+          "texto": ""
+        },
+        {
+          "nivel": 2,
+          "texto": "Milton Leite se apresenta à polícia e é preso em Mogi das Cruzes, na G"
+        },
+        {
+          "nivel": 2,
+          "texto": "Preso, Vorcaro ameaça e intimida ministros do STF em recados levados à"
+        },
+        {
+          "nivel": 2,
+          "texto": "Artista Rodrigo Cass morre aos 43 anos após afogamento na praia de Cop"
+        },
+        {
+          "nivel": 2,
+          "texto": "Redução de R$ 11,5 bi com Previdência abriu caminho para reajuste do B"
+        },
+        {
+          "nivel": 2,
+          "texto": "Planilha de bicheiro indica pagamento de R$ 10 mi para aliados da famí"
+        },
+        {
+          "nivel": 2,
+          "texto": "MP processa Luciano Hang por assédio eleitoral e pede R$ 30 milhões de"
+        },
+        {
+          "nivel": 2,
+          "texto": "Toneladas de ouro da Venezuela serão transferidas para os EUA"
+        },
+        {
+          "nivel": 4,
+          "texto": "Eleições"
+        },
+        {
+          "nivel": 2,
+          "texto": "Candidato preso por suspeita de elo com PCC teve registro liberado sei"
+        },
+        {
+          "nivel": 2,
+          "texto": "Datafolha, 1º turno: Lula tem 39%, contra 36% de Flávio; situação é de"
+        },
+        {
+          "nivel": 2,
+          "texto": "‘Teve conotação político-eleitoral’, diz candidata do PT espancada e a"
+        }
+      ],
+      "saltoDeNivel": "h2 seguido de h4",
+      "tabindexPositivo": 0,
+      "titlePagina": "ICL Notícias - Jornalismo Independente",
+      "totalFocaveis": 153,
+      "totalTitulos": 82
+    },
+    "teclado": {
+      "tabulacoes": 40,
+      "paradasComFoco": 40,
+      "paradasDistintas": 38,
+      "semIndicadorVisivel": 40,
+      "percentualSemIndicador": 100.0,
+      "foraDaAreaVisivel": 25,
+      "paradasDentroDeDialogo": 0,
+      "suspeitaDeArmadilha": false,
+      "primeirasParadas": [
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/milton-leite-apresenta-policia-preso-sao-paulo/",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Milton Leite se apresenta à polícia e é preso em Mogi das Cr",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/milton-leite-malas-guardada-passagem-secreta-sp/",
+          "outline": "none 0px rgb(15, 20, 25)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Milton Leite tinha R$ 457 mil em malas guardadas dentro de ‘",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/alvo-de-operacao-sobre-pcc-ajudou-a-viabilizar/",
+          "outline": "none 0px rgb(15, 20, 25)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Alvo de operação sobre PCC viabilizou contrato milionário de",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/preso-vorcaro-ameaca-intimida-ministros-stf/",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/preso-vorcaro-ameaca-intimida-ministros-stf/",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Preso, Vorcaro ameaça e intimida ministros do STF em recados",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": false,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/ministro-do-stj-disse-estar-sempre-vorcaro/",
+          "outline": "none 0px rgb(15, 20, 25)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Ministro do STJ disse estar ‘sempre à disposição de Vorcaro’",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/artista-rodrigo-cass-afogamento-copacabana/",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/artista-rodrigo-cass-afogamento-copacabana/",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Artista Rodrigo Cass morre aos 43 anos após afogamento na pr",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/reducao-de-r-115-bi-em-gasto-com-previdencia/",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/reducao-de-r-115-bi-em-gasto-com-previdencia/",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Redução de R$ 11,5 bi com Previdência abriu caminho para rea",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/planilha-de-bicheiro-indica-pagamento-de-r-10-milhoes",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/planilha-de-bicheiro-indica-pagamento-de-r-10-milhoes",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Planilha de bicheiro indica pagamento de R$ 10 mi para aliad",
+          "tipo": "",
+          "vazio": false
+        }
+      ],
+      "exemplosSemIndicador": [
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/milton-leite-apresenta-policia-preso-sao-paulo/",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Milton Leite se apresenta à polícia e é preso em Mogi das Cr",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/milton-leite-malas-guardada-passagem-secreta-sp/",
+          "outline": "none 0px rgb(15, 20, 25)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Milton Leite tinha R$ 457 mil em malas guardadas dentro de ‘",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/alvo-de-operacao-sobre-pcc-ajudou-a-viabilizar/",
+          "outline": "none 0px rgb(15, 20, 25)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Alvo de operação sobre PCC viabilizou contrato milionário de",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/preso-vorcaro-ameaca-intimida-ministros-stf/",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "text-main-dark",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "https://iclnoticias.com.br/preso-vorcaro-ameaca-intimida-ministros-stf/",
+          "outline": "none 3px rgb(1, 15, 52)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Preso, Vorcaro ameaça e intimida ministros do STF em recados",
+          "tipo": "",
+          "vazio": false
+        }
+      ]
+    },
+    "zoom": {
+      "em1280px": {
+        "amostraControlesCortados": [
+          {
+            "classe": "side-btn-close",
+            "tag": "button",
+            "texto": "Fechar Menu"
+          },
+          {
+            "classe": "",
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "",
+            "tag": "a",
+            "texto": "ELEIÇÕES 2026"
+          },
+          {
+            "classe": "",
+            "tag": "a",
+            "texto": "PESQUISAS ELEITORAIS 2026"
+          },
+          {
+            "classe": "",
+            "tag": "a",
+            "texto": "COLUNISTAS"
+          }
+        ],
+        "amostraVazando": [],
+        "controlesCortados": 27,
+        "elementosVazando": 0,
+        "larguraConteudo": 1249,
+        "larguraJanela": 1264,
+        "rolagemHorizontal": false,
+        "sobraHorizontalPx": 0,
+        "totalControles": 153
+      },
+      "em640px_zoom200": {
+        "amostraControlesCortados": [
+          {
+            "classe": "side-btn-close",
+            "tag": "button",
+            "texto": "Fechar Menu"
+          },
+          {
+            "classe": "",
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "",
+            "tag": "a",
+            "texto": "ELEIÇÕES 2026"
+          },
+          {
+            "classe": "",
+            "tag": "a",
+            "texto": "PESQUISAS ELEITORAIS 2026"
+          },
+          {
+            "classe": "",
+            "tag": "a",
+            "texto": "COLUNISTAS"
+          }
+        ],
+        "amostraVazando": [
+          {
+            "classe": "h-100 bg-white box-shadow-main border-rd-14",
+            "sobraPx": 421,
+            "tag": "div",
+            "texto": "NINA LEMOS\nVorcaro e as ‘novinhas’ oferecidas"
+          },
+          {
+            "classe": "opinion-author",
+            "sobraPx": 219,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "border-rd-50 w-100",
+            "sobraPx": 216,
+            "tag": "img",
+            "texto": ""
+          },
+          {
+            "classe": "opinion-details",
+            "sobraPx": 421,
+            "tag": "a",
+            "texto": "NINA LEMOS\nVorcaro e as ‘novinhas’ oferecidas"
+          },
+          {
+            "classe": "news-hat-2",
+            "sobraPx": 401,
+            "tag": "div",
+            "texto": "NINA LEMOS"
+          },
+          {
+            "classe": "text-title",
+            "sobraPx": 401,
+            "tag": "h2",
+            "texto": "Vorcaro e as ‘novinhas’ oferecidas como brind"
+          }
+        ],
+        "controlesCortados": 30,
+        "elementosVazando": 35,
+        "larguraConteudo": 614,
+        "larguraJanela": 624,
+        "rolagemHorizontal": false,
+        "sobraHorizontalPx": 0,
+        "totalControles": 146
+      }
+    }
+  },
+  {
+    "prefixo": "site2",
+    "nome": "G1",
+    "url": "https://g1.globo.com/",
+    "coletadoEm": "2026-09-18T20:46:02",
+    "arquivoAxe": "site2_acess.json",
+    "totalViolacoes": 11,
+    "violacoes": [
+      {
+        "id": "autocomplete-valid",
+        "impacto": "serious",
+        "descricao": "Ensure the autocomplete attribute is correct and suitable for the form field",
+        "ajuda": "autocomplete attribute must be used correctly",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/autocomplete-valid?application=axeAPI",
+        "criterios": [
+          "wcag21aa",
+          "wcag135"
+        ],
+        "ocorrencias": 1,
+        "exemplos": [
+          {
+            "seletor": [
+              "#busca-campo"
+            ],
+            "html": "<input placeholder=\"BUSCAR\" type=\"search\" name=\"q\" id=\"busca-campo\" autocomplete=\"off\" aria-label=\"buscar\">",
+            "motivo": "Fix all of the following:\n  the autocomplete value is inappropriate for this type of input"
+          }
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "impacto": "serious",
+        "descricao": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+        "ajuda": "Elements must have sufficient color contrast",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+        "criterios": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "ocorrencias": 9,
+        "exemplos": [
+          {
+            "seletor": [
+              [
+                "nova-barra-globocom",
+                "a[aria-label=\"Ir\\ para\\ G\\ E\"]"
+              ]
+            ],
+            "html": "<a href=\"https://ge.globo.com/\" class=\"link-logo\" tabindex=\"0\" aria-label=\"Ir para G E\" accesskey=\"e\" style=\"color: var(--color-ge); --link-logo-hover-border-color: var(--color-ge);\">ge</a>",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 3.06 (foreground color: #06aa48, background color: #ffffff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "seletor": [
+              [
+                "nova-barra-globocom",
+                "a[aria-label=\"Ir\\ para\\ G\\ Show\"]"
+              ]
+            ],
+            "html": "<a href=\"https://gshow.globo.com/\" class=\"link-logo\" tabindex=\"0\" aria-label=\"Ir para G Show\" accesskey=\"i\" style=\"color: var(--color-gshow); --link-logo-hover-border-color: var(--color-gshow);\">gshow</a>",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 2.91 (foreground color: #ff6700, background color: #ffffff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "seletor": [
+              [
+                "nova-barra-globocom",
+                "a[aria-label=\"Ir\\ para\\ Globoplay\"]"
+              ]
+            ],
+            "html": "<a href=\"https://globoplay.globo.com/?origemId=92434\" class=\"link-logo\" tabindex=\"0\" aria-label=\"Ir para Globoplay\" accesskey=\"v\" style=\"color: var(--color-globoplay); --link-logo-hover-border-color: var(--color-globoplay);\">globoplay</a>",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #fb0334, background color: #ffffff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "duplicate-id",
+        "impacto": "minor",
+        "descricao": "Ensures every id attribute value is unique",
+        "ajuda": "id attribute value must be unique",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag411"
+        ],
+        "ocorrencias": 62,
+        "exemplos": [
+          {
+            "seletor": [
+              "script[type=\"text\\/javascript\"]:nth-child(90)"
+            ],
+            "html": "<script type=\"text/javascript\" id=\"SETTINGS\">",
+            "motivo": "Fix any of the following:\n  Document has multiple static elements with the same id attribute"
+          },
+          {
+            "seletor": [
+              "#header-produto > .header-principal.gui-color-primary-bg.header-navegacao-color > .grid-12.header-navegacao-container.row > .area-principal.column > .header-navegacao-left > .header-personalization.without-logo"
+            ],
+            "html": "<span id=\"header-personalization\" class=\"header-personalization without-logo\"></span>",
+            "motivo": "Fix any of the following:\n  Document has multiple static elements with the same id attribute"
+          },
+          {
+            "seletor": [
+              "#header-produto > .header-principal.gui-color-primary-bg.header-navegacao-color > .grid-12.header-navegacao-container.row > .area-principal.column > .header-navegacao-right > div[data-clarity-mask=\"true\"]"
+            ],
+            "html": "<div id=\"busca-padrao\" data-clarity-mask=\"true\"></div>",
+            "motivo": "Fix any of the following:\n  Document has multiple static elements with the same id attribute"
+          }
+        ]
+      },
+      {
+        "id": "empty-heading",
+        "impacto": "minor",
+        "descricao": "Ensures headings have discernible text",
+        "ajuda": "Headings must not be empty",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/empty-heading?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 1,
+        "exemplos": [
+          {
+            "seletor": [
+              "h1"
+            ],
+            "html": "<h1 class=\"logo\">",
+            "motivo": "Fix any of the following:\n  Element does not have text that is visible to screen readers"
+          }
+        ]
+      },
+      {
+        "id": "heading-order",
+        "impacto": "moderate",
+        "descricao": "Ensures the order of headings is semantically correct",
+        "ajuda": "Heading levels should only increase by one",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 1,
+        "exemplos": [
+          {
+            "seletor": [
+              "h3"
+            ],
+            "html": "<h3 class=\"glb-apc-bar-central_title glb-apc-bar-central_title--hidden\">Apuração</h3>",
+            "motivo": "Fix any of the following:\n  Heading order invalid"
+          }
+        ]
+      },
+      {
+        "id": "image-alt",
+        "impacto": "critical",
+        "descricao": "Ensures <img> elements have alternate text or a role of none or presentation",
+        "ajuda": "Images must have alternate text",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/image-alt?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag111"
+        ],
+        "ocorrencias": 28,
+        "exemplos": [
+          {
+            "seletor": [
+              "#header-produto > .header-principal.gui-color-primary-bg.header-navegacao-color > .grid-12.header-navegacao-container.row > .area-principal.column > .header-navegacao-right > .header-touchpoint-wrapper > .codex-touchpoint-login[data-props=\"\\[\\]\"] > .cxm-dropdown.cxm-dropdown--hover.cxm-touchpoint-login__dropdown > .cxm-dropdown__content > .cxm-unlogged-content__container > .cxm-unlogged-content__icons-container > .cxm-unlogged-content__slider.cxm-unlogged-content__slider--animated > .cxm-unlogged-content__slider-container > .cxm-unlogged-content__slider-item:nth-child(1) > img"
+            ],
+            "html": "<img src=\"https://s3.glbimg.com/v1/AUTH_b922f1376f6c452e9bb337cc7d996a6e/logo/tenant/oglobo.svg\">",
+            "motivo": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empt"
+          },
+          {
+            "seletor": [
+              "#header-produto > .header-principal.gui-color-primary-bg.header-navegacao-color > .grid-12.header-navegacao-container.row > .area-principal.column > .header-navegacao-right > .header-touchpoint-wrapper > .codex-touchpoint-login[data-props=\"\\[\\]\"] > .cxm-dropdown.cxm-dropdown--hover.cxm-touchpoint-login__dropdown > .cxm-dropdown__content > .cxm-unlogged-content__container > .cxm-unlogged-content__icons-container > .cxm-unlogged-content__slider.cxm-unlogged-content__slider--animated > .cxm-unlogged-content__slider-container > .cxm-unlogged-content__slider-item:nth-child(2) > img"
+            ],
+            "html": "<img src=\"https://s3.glbimg.com/v1/AUTH_b922f1376f6c452e9bb337cc7d996a6e/logo/tenant/cartola.svg\">",
+            "motivo": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empt"
+          },
+          {
+            "seletor": [
+              "#header-produto > .header-principal.gui-color-primary-bg.header-navegacao-color > .grid-12.header-navegacao-container.row > .area-principal.column > .header-navegacao-right > .header-touchpoint-wrapper > .codex-touchpoint-login[data-props=\"\\[\\]\"] > .cxm-dropdown.cxm-dropdown--hover.cxm-touchpoint-login__dropdown > .cxm-dropdown__content > .cxm-unlogged-content__container > .cxm-unlogged-content__icons-container > .cxm-unlogged-content__slider.cxm-unlogged-content__slider--animated > .cxm-unlogged-content__slider-container > .cxm-unlogged-content__slider-item:nth-child(3) > img"
+            ],
+            "html": "<img src=\"https://s3.glbimg.com/v1/AUTH_b922f1376f6c452e9bb337cc7d996a6e/logo/tenant/ge.svg\">",
+            "motivo": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute or the title attribute is empt"
+          }
+        ]
+      },
+      {
+        "id": "link-name",
+        "impacto": "serious",
+        "descricao": "Ensures links have discernible text",
+        "ajuda": "Links must have discernible text",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/link-name?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag412",
+          "wcag244"
+        ],
+        "ocorrencias": 9,
+        "exemplos": [
+          {
+            "seletor": [
+              "#\\31 10da034-efd9-4dc5-803e-b78aae8dbf21 > .feed-post-body > .feed-media-wrapper > .feed-post-figure-link.gui-image-hover[ref=\"\\[object\\ Object\\]\"]"
+            ],
+            "html": "<a href=\"https://g1.globo.com/politica/eleicoes/2026/noticia/2026/09/18/entenda-se-o-governo-pode-reajustar-beneficio-social-em-ano-eleitoral-e-diferencas-de-aumentos-de-lula-e-bolsonaro.ghtml\" class=\"feed-post-figure-link gui-image-hover\" ref=\"[object Object]\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do no"
+          },
+          {
+            "seletor": [
+              "#\\32 7c509fb-ef66-4084-b3f1-eb7a7e5aa1ad > .feed-post-body > .feed-media-wrapper > .feed-post-figure-link.gui-image-hover[ref=\"\\[object\\ Object\\]\"]"
+            ],
+            "html": "<a href=\"https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/18/datafolha-crise-no-stf-e-campanha-eleitoral.ghtml\" class=\"feed-post-figure-link gui-image-hover\" ref=\"[object Object]\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do no"
+          },
+          {
+            "seletor": [
+              "#bf120458-85a6-4845-9068-7af568a41061 > .feed-post-body > .feed-media-wrapper > .feed-post-figure-link.gui-image-hover[ref=\"\\[object\\ Object\\]\"]"
+            ],
+            "html": "<a href=\"https://g1.globo.com/politica/eleicoes/2026/noticia/2026/09/18/lula-diz-nao-aceitar-classificacao-de-faccoes-como-terroristas-terrorismo-foi-o-8-de-janeiro.ghtml\" class=\"feed-post-figure-link gui-image-hover\" ref=\"[object Object]\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do no"
+          }
+        ]
+      },
+      {
+        "id": "list",
+        "impacto": "serious",
+        "descricao": "Ensures that lists are structured correctly",
+        "ajuda": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/list?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag131"
+        ],
+        "ocorrencias": 131,
+        "exemplos": [
+          {
+            "seletor": [
+              "ol"
+            ],
+            "html": "<ol>",
+            "motivo": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements"
+          },
+          {
+            "seletor": [
+              "#menu-1-editorias > .menu-submenu-level1.menu-submenu.menu-submenu-column-1"
+            ],
+            "html": "<ul class=\"menu-level menu-submenu  menu-submenu-level1 menu-submenu-column-1\">",
+            "motivo": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements"
+          },
+          {
+            "seletor": [
+              "#menu-2-agro > .menu-submenu-level2.menu-submenu.menu-submenu-column-1"
+            ],
+            "html": "<ul class=\"menu-level menu-submenu  menu-submenu-level2 menu-submenu-column-1\">",
+            "motivo": "Fix all of the following:\n  List element has direct children that are not allowed inside <li> elements"
+          }
+        ]
+      }
+    ],
+    "estrutura": {
+      "botoesSemNome": 130,
+      "campoBusca": {
+        "ariaLabel": "buscar",
+        "ariaLabelledby": null,
+        "dentroDeRoleSearch": false,
+        "existe": true,
+        "placeholder": "BUSCAR",
+        "temLabel": true,
+        "title": null,
+        "visivel": true
+      },
+      "dialogoAberto": 0,
+      "h1": [
+        ""
+      ],
+      "iframesSemTitle": 0,
+      "imagens": {
+        "altVazio": 15,
+        "semAlt": 28,
+        "total": 51
+      },
+      "landmarks": {
+        "aside": 0,
+        "footer": 3,
+        "header": 1,
+        "main": 1,
+        "nav": 1,
+        "search": 0
+      },
+      "lang": "pt-br",
+      "linkDePular": {
+        "pareceLinkDePular": true,
+        "texto": "Pular para o conteúdo"
+      },
+      "linksSemTexto": 645,
+      "primeirosTitulos": [
+        {
+          "nivel": 1,
+          "texto": ""
+        },
+        {
+          "nivel": 3,
+          "texto": "Apuração"
+        },
+        {
+          "nivel": 2,
+          "texto": "Leia também ⬇️"
+        },
+        {
+          "nivel": 2,
+          "texto": "Viu isso?"
+        },
+        {
+          "nivel": 2,
+          "texto": "Previsão do Tempo"
+        },
+        {
+          "nivel": 2,
+          "texto": "Mais Lidas"
+        },
+        {
+          "nivel": 2,
+          "texto": "Economia"
+        },
+        {
+          "nivel": 2,
+          "texto": "🎧 Ouça no g1"
+        },
+        {
+          "nivel": 2,
+          "texto": "Bolsonaro e Lula reajustaram benefícios em ano eleitoral; compare"
+        },
+        {
+          "nivel": 2,
+          "texto": "Datafolha: 38% dizem que crise no STF prejudica Lula; 31%, que afeta F"
+        },
+        {
+          "nivel": 2,
+          "texto": "Lula diz não aceitar classificação de Trump de facções como terrorista"
+        },
+        {
+          "nivel": 2,
+          "texto": "EUA enviam drones de ataques contra traficantes na América do Sul, diz"
+        }
+      ],
+      "saltoDeNivel": "h1 seguido de h3",
+      "tabindexPositivo": 1,
+      "titlePagina": "g1 - O portal de notícias da Globo",
+      "totalFocaveis": 881,
+      "totalTitulos": 23
+    },
+    "teclado": {
+      "tabulacoes": 40,
+      "paradasComFoco": 40,
+      "paradasDistintas": 39,
+      "semIndicadorVisivel": 0,
+      "percentualSemIndicador": 0.0,
+      "foraDaAreaVisivel": 1,
+      "paradasDentroDeDialogo": 0,
+      "suspeitaDeArmadilha": false,
+      "primeirasParadas": [
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "bstn-hl-link",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/politica/noticia/2026/09/18/gilmar-mendes-diz-que-reajuste-",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Eleições 2026\nGoverno não feriu regra eleitoral ao aumentar ",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "bstn-hl-link",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/pop-arte/noticia/2026/09/18/g1-completa-20-anos-saiba-como-",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Parabéns pra nós! 🎉🥳🎂\nDia de festa! Nos 20 anos do g1, co",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "bstn-hl-link bstn-related",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/g1-20-anos/noticia/2026/09/18/g1-20-anos-assista-a-todos-os",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Série especial mostra como funciona o portal da Globo; VÍDEO",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "gui-color-primary",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/go/goias/noticia/2026/09/18/vulcao-que-aquece-a-agua-influe",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "GO: influencer fala de mito sobre vulcão em região de águas ",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "gui-color-primary",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/go/goias/noticia/2026/09/18/vulcao-que-aquece-a-agua-influe",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "gui-color-primary",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/sc/santa-catarina/noticia/2026/09/18/hotel-governador-celso",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "SC: hotel que hospedou Beyoncé e Paul McCartney ganha 2ª cha",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "gui-color-primary",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/sc/santa-catarina/noticia/2026/09/18/hotel-governador-celso",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "gui-color-primary",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/pi/piaui/noticia/2026/09/18/musica-em-feito-pipa-filme.ghtm",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "PI: cantor que tem música em 'Feito Pipa' celebra filme na c",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "gui-color-primary",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/pi/piaui/noticia/2026/09/18/musica-em-feito-pipa-filme.ghtm",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "gui-color-primary",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/mundo/noticia/2026/09/18/eua-se-preparam-para-reconstruir-p",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "EUA se preparam para reconstruir porto em ilha remota e acen",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "gui-color-primary",
+          "dentroDaTela": false,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/mundo/noticia/2026/09/18/eua-se-preparam-para-reconstruir-p",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "gui-color-primary",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://g1.globo.com/mundo/noticia/2026/09/18/uber-e-condenada-a-pagar-r-206-mil",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Uber é condenada a pagar R$ 206 milhões à família de jovem q",
+          "tipo": "",
+          "vazio": false
+        }
+      ],
+      "exemplosSemIndicador": []
+    },
+    "zoom": {
+      "em1280px": {
+        "amostraControlesCortados": [
+          {
+            "classe": "codex-link codex-link--medium codex-link--standalo",
+            "tag": "a",
+            "texto": "Pular para o conteúdo"
+          },
+          {
+            "classe": "sc-dTvVRJ jOgJat",
+            "tag": "button",
+            "texto": ""
+          },
+          {
+            "classe": "sc-dTvVRJ jOgJat",
+            "tag": "button",
+            "texto": ""
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "tag": "a",
+            "texto": "jogos"
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "tag": "a",
+            "texto": "eleições 2026"
+          }
+        ],
+        "amostraVazando": [
+          {
+            "classe": "sc-bjMIFn hSWxNn item-thumb",
+            "sobraPx": 53,
+            "tag": "div",
+            "texto": "1 min"
+          },
+          {
+            "classe": "sc-etsjJW cmPPPP",
+            "sobraPx": 53,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "sc-fYmhhH ghdesV",
+            "sobraPx": 53,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "sc-koBvLg hIOVbu",
+            "sobraPx": 46,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "wrapper-play-icon",
+            "sobraPx": 3,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "sc-dTvVRJ jOgJat",
+            "sobraPx": 3,
+            "tag": "button",
+            "texto": ""
+          }
+        ],
+        "controlesCortados": 27,
+        "elementosVazando": 22,
+        "larguraConteudo": 1249,
+        "larguraJanela": 1264,
+        "rolagemHorizontal": false,
+        "sobraHorizontalPx": 0,
+        "totalControles": 895
+      },
+      "em640px_zoom200": {
+        "amostraControlesCortados": [
+          {
+            "classe": "codex-link codex-link--medium codex-link--standalo",
+            "tag": "a",
+            "texto": "Pular para o conteúdo"
+          },
+          {
+            "classe": "sc-dTvVRJ jOgJat",
+            "tag": "button",
+            "texto": ""
+          },
+          {
+            "classe": "sc-dTvVRJ jOgJat",
+            "tag": "button",
+            "texto": ""
+          },
+          {
+            "classe": "sc-dTvVRJ jOgJat",
+            "tag": "button",
+            "texto": ""
+          },
+          {
+            "classe": "sc-dTvVRJ jOgJat",
+            "tag": "button",
+            "texto": ""
+          }
+        ],
+        "amostraVazando": [
+          {
+            "classe": "sc-bjMIFn hSWxNn item-thumb",
+            "sobraPx": 130,
+            "tag": "div",
+            "texto": "1 min\nQual o maior desafio de lançar um veícu"
+          },
+          {
+            "classe": "sc-etsjJW cmPPPP",
+            "sobraPx": 130,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "sc-fYmhhH ghdesV",
+            "sobraPx": 130,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "sc-koBvLg hIOVbu",
+            "sobraPx": 121,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "time-badged",
+            "sobraPx": 3,
+            "tag": "div",
+            "texto": "1 min"
+          },
+          {
+            "classe": "sc-fszimp cFZOdd",
+            "sobraPx": 3,
+            "tag": "div",
+            "texto": "1 min"
+          }
+        ],
+        "controlesCortados": 510,
+        "elementosVazando": 561,
+        "larguraConteudo": 609,
+        "larguraJanela": 624,
+        "rolagemHorizontal": false,
+        "sobraHorizontalPx": 0,
+        "totalControles": 879
+      }
+    }
+  },
+  {
+    "prefixo": "site3",
+    "nome": "CNN Brasil",
+    "url": "https://www.cnnbrasil.com.br/",
+    "coletadoEm": "2026-09-18T20:46:25",
+    "arquivoAxe": "site3_acess.json",
+    "totalViolacoes": 11,
+    "violacoes": [
+      {
+        "id": "aria-allowed-role",
+        "impacto": "minor",
+        "descricao": "Ensures role attribute has an appropriate value for the element",
+        "ajuda": "ARIA role must be appropriate for the element",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 96,
+        "exemplos": [
+          {
+            "seletor": [
+              ".lg\\:py-0.lg\\:border-t-0.py-8:nth-child(1) > .reverse-column.flex-col-reverse.column > .lg\\:min-w-56.lg\\:h-44.md\\:h-64 > .lg\\:min-w-56.lg\\:h-44.md\\:h-64 > .lg\\:min-w-56.lg\\:h-44.md\\:h-64"
+            ],
+            "html": "<picture class=\"flex object-cover overflow-clip rounded-lg lg:min-w-56 lg:h-44 min-w-full w-full md:h-64 h-48 [#manchete-section-one_&amp;]:mx-0\" aria-hidden=\"true\" role=\"presentation\">",
+            "motivo": "Fix any of the following:\n  role presentation  is not allowed for given element"
+          },
+          {
+            "seletor": [
+              ".lg\\:py-0.lg\\:border-t-0.py-8:nth-child(2) > .reverse-column.flex-col-reverse.column > .lg\\:min-w-56.lg\\:h-44.md\\:h-64 > .lg\\:min-w-56.lg\\:h-44.md\\:h-64 > .lg\\:min-w-56.lg\\:h-44.md\\:h-64"
+            ],
+            "html": "<picture class=\"flex object-cover overflow-clip rounded-lg lg:min-w-56 lg:h-44 min-w-full w-full md:h-64 h-48 [#manchete-section-one_&amp;]:mx-0\" aria-hidden=\"true\" role=\"presentation\">",
+            "motivo": "Fix any of the following:\n  role presentation  is not allowed for given element"
+          },
+          {
+            "seletor": [
+              ".lg\\:py-0.lg\\:border-t-0.py-8:nth-child(3) > .reverse-column.flex-col-reverse.column > .lg\\:min-w-56.lg\\:h-44.md\\:h-64 > .lg\\:min-w-56.lg\\:h-44.md\\:h-64 > .lg\\:min-w-56.lg\\:h-44.md\\:h-64"
+            ],
+            "html": "<picture class=\"flex object-cover overflow-clip rounded-lg lg:min-w-56 lg:h-44 min-w-full w-full md:h-64 h-48 [#manchete-section-one_&amp;]:mx-0\" aria-hidden=\"true\" role=\"presentation\">",
+            "motivo": "Fix any of the following:\n  role presentation  is not allowed for given element"
+          }
+        ]
+      },
+      {
+        "id": "aria-valid-attr-value",
+        "impacto": "critical",
+        "descricao": "Ensures all ARIA attributes have valid values",
+        "ajuda": "ARIA attributes must conform to valid values",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr-value?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag412"
+        ],
+        "ocorrencias": 6,
+        "exemplos": [
+          {
+            "seletor": [
+              "div[aria-label=\"Slide\\ 1\\ de\\ 12\"] > .group-has-\\[\\.featuredImage\\]\\:w-full.group-has-\\[\\.gallery\\]\\:w-full.group-has-\\[\\.mosaic-large\\]\\:w-full"
+            ],
+            "html": "<div tabindex=\"0\" role=\"button\" aria-controls=\"modal-content\" aria-expanded=\"false\" aria-haspopup=\"true\" class=\"h-auto w-fit cursor-pointer group-has-[.featuredImage]:w-full group-has-[.gallery]:w-full group-has-[.mosaic-large]:w-full group-has-[.mosaic-small]:w-fit [#gut-square_&amp;]:w-full [#gut-",
+            "motivo": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"modal-content\""
+          },
+          {
+            "seletor": [
+              "div[aria-label=\"Slide\\ 2\\ de\\ 12\"] > .group-has-\\[\\.featuredImage\\]\\:w-full.group-has-\\[\\.gallery\\]\\:w-full.group-has-\\[\\.mosaic-large\\]\\:w-full"
+            ],
+            "html": "<div tabindex=\"0\" role=\"button\" aria-controls=\"modal-content\" aria-expanded=\"false\" aria-haspopup=\"true\" class=\"h-auto w-fit cursor-pointer group-has-[.featuredImage]:w-full group-has-[.gallery]:w-full group-has-[.mosaic-large]:w-full group-has-[.mosaic-small]:w-fit [#gut-square_&amp;]:w-full [#gut-",
+            "motivo": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"modal-content\""
+          },
+          {
+            "seletor": [
+              "div[aria-label=\"Slide\\ 3\\ de\\ 12\"] > .group-has-\\[\\.featuredImage\\]\\:w-full.group-has-\\[\\.gallery\\]\\:w-full.group-has-\\[\\.mosaic-large\\]\\:w-full"
+            ],
+            "html": "<div tabindex=\"0\" role=\"button\" aria-controls=\"modal-content\" aria-expanded=\"false\" aria-haspopup=\"true\" class=\"h-auto w-fit cursor-pointer group-has-[.featuredImage]:w-full group-has-[.gallery]:w-full group-has-[.mosaic-large]:w-full group-has-[.mosaic-small]:w-fit [#gut-square_&amp;]:w-full [#gut-",
+            "motivo": "Fix all of the following:\n  Invalid ARIA attribute value: aria-controls=\"modal-content\""
+          }
+        ]
+      },
+      {
+        "id": "aria-valid-attr",
+        "impacto": "critical",
+        "descricao": "Ensures attributes that begin with aria- are valid ARIA attributes",
+        "ajuda": "ARIA attributes must conform to valid names",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag412"
+        ],
+        "ocorrencias": 17,
+        "exemplos": [
+          {
+            "seletor": [
+              ".group\\/side-bar > section[aria-label=\"Galeria\\ de\\ conteúdos\"][aria-roledescription=\"carrossel\"]"
+            ],
+            "html": "<section class=\"relative\" aria-roledescription=\"carrossel\" aria-label=\"Galeria de conteúdos\">",
+            "motivo": "Fix any of the following:\n  Invalid ARIA attribute name: aria-roledescription"
+          },
+          {
+            "seletor": [
+              "div[aria-label=\"Slide\\ 1\\ de\\ 3\"]"
+            ],
+            "html": "<div data-index=\"0\" class=\"keen-slider__slide fader__slide\" tabindex=\"0\" role=\"group\" aria-roledescription=\"slide\" aria-label=\"Slide 1 de 3\" style=\"opacity: 1; min-width: 280px; max-width: 280px; transform: translate3d(0px, 0px, 0px);\" aria-hidden=\"false\">",
+            "motivo": "Fix any of the following:\n  Invalid ARIA attribute name: aria-roledescription"
+          },
+          {
+            "seletor": [
+              "div[aria-label=\"Blogs\\ e\\ colunas\"]"
+            ],
+            "html": "<div class=\"relative w-full\" role=\"region\" aria-roledescription=\"carrossel\" aria-label=\"Blogs e colunas\">",
+            "motivo": "Fix any of the following:\n  Invalid ARIA attribute name: aria-roledescription"
+          }
+        ]
+      },
+      {
+        "id": "button-name",
+        "impacto": "critical",
+        "descricao": "Ensures buttons have discernible text",
+        "ajuda": "Buttons must have discernible text",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag412"
+        ],
+        "ocorrencias": 1,
+        "exemplos": [
+          {
+            "seletor": [
+              ".right-2"
+            ],
+            "html": "<button type=\"submit\" class=\"transition-all duration-300 ease-in-out text-white absolute right-2 top-2 flex h-7 w-9 items-center justify-center rounded-md bg-red-400 hover:bg-red-600 focus:bg-red-600\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to scr"
+          }
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "impacto": "serious",
+        "descricao": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+        "ajuda": "Elements must have sufficient color contrast",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+        "criterios": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "ocorrencias": 21,
+        "exemplos": [
+          {
+            "seletor": [
+              ".w-8\\/12 > .rfm-marquee-container > .rfm-marquee:nth-child(1) > .rfm-initial-child-container > .rfm-child:nth-child(2) > .focus\\:outline-1.border-r.flex-wrap > .gap-1.items-center[aria-hidden=\"true\"] > .text-red-500.gap-0\\.5.items-center > .text-nowrap"
+            ],
+            "html": "<span class=\"text-nowrap flex\">-1,76%</span>",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 3.76 (foreground color: #ef4444, background color: #ffffff, font size: 9.0pt, font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "seletor": [
+              ".w-8\\/12 > .rfm-marquee-container > .rfm-marquee:nth-child(1) > .rfm-initial-child-container > .rfm-child:nth-child(3) > .focus\\:outline-1.border-r.flex-wrap > .gap-1.items-center[aria-hidden=\"true\"] > .text-red-500.gap-0\\.5.items-center > .text-nowrap"
+            ],
+            "html": "<span class=\"text-nowrap flex\">-0,45%</span>",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 3.76 (foreground color: #ef4444, background color: #ffffff, font size: 9.0pt, font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "seletor": [
+              ".w-8\\/12 > .rfm-marquee-container > .rfm-marquee:nth-child(1) > .rfm-initial-child-container > .rfm-child:nth-child(4) > .focus\\:outline-1.border-r.flex-wrap > .gap-1.items-center[aria-hidden=\"true\"] > .text-red-500.gap-0\\.5.items-center > .text-nowrap"
+            ],
+            "html": "<span class=\"text-nowrap flex\">-0,29%</span>",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 3.76 (foreground color: #ef4444, background color: #ffffff, font size: 9.0pt, font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "duplicate-id-aria",
+        "impacto": "critical",
+        "descricao": "Ensures every id attribute value used in ARIA and in labels is unique",
+        "ajuda": "IDs used in ARIA and labels must be unique",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id-aria?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag411"
+        ],
+        "ocorrencias": 3,
+        "exemplos": [
+          {
+            "seletor": [
+              ".h-20 > .group\\/searchform.rounded-e.bg-none"
+            ],
+            "html": "<form role=\"search\" aria-label=\"Formulário de busca de conteúdo\" action=\"/\" class=\"group/searchform inline-flex h-9 w-fit items-center rounded-e bg-none px-1 focus:bg-neutral-50 focus:outline-none\" id=\"header-search-form\">",
+            "motivo": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: header-search-form"
+          },
+          {
+            "seletor": [
+              "#P6Jiw1cwFiM > .inset-0.justify-center.absolute > .h-24.text-ellipsis.from-black\\/55"
+            ],
+            "html": "<span class=\"text-lg font-normal absolute top-0 block h-24 w-full overflow-hidden text-ellipsis whitespace-nowrap bg-gradient-to-b from-black/55 via-black/25 to-transparent px-5 py-6 text-white/90 drop-shadow-md group-hover:text-white\" id=\"video-title-P6Jiw1cwFiM\">",
+            "motivo": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: video-title-P6Jiw1cwFiM"
+          },
+          {
+            "seletor": [
+              "#gLW9OOG6qN8 > .inset-0.justify-center.absolute > .h-24.text-ellipsis.from-black\\/55"
+            ],
+            "html": "<span class=\"text-lg font-normal absolute top-0 block h-24 w-full overflow-hidden text-ellipsis whitespace-nowrap bg-gradient-to-b from-black/55 via-black/25 to-transparent px-5 py-6 text-white/90 drop-shadow-md group-hover:text-white\" id=\"video-title-gLW9OOG6qN8\">",
+            "motivo": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: video-title-gLW9OOG6qN8"
+          }
+        ]
+      },
+      {
+        "id": "duplicate-id",
+        "impacto": "minor",
+        "descricao": "Ensures every id attribute value is unique",
+        "ajuda": "id attribute value must be unique",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag411"
+        ],
+        "ocorrencias": 5,
+        "exemplos": [
+          {
+            "seletor": [
+              "script[type=\"application\\/ld\\+json\"]:nth-child(1)"
+            ],
+            "html": "<script id=\"schema-news-media-org\" type=\"application/ld+json\">",
+            "motivo": "Fix any of the following:\n  Document has multiple static elements with the same id attribute"
+          },
+          {
+            "seletor": [
+              "script[type=\"application\\/ld\\+json\"]:nth-child(2)"
+            ],
+            "html": "<script id=\"schema-website\" type=\"application/ld+json\">",
+            "motivo": "Fix any of the following:\n  Document has multiple static elements with the same id attribute"
+          },
+          {
+            "seletor": [
+              "script[type=\"application\\/ld\\+json\"]:nth-child(3)"
+            ],
+            "html": "<script id=\"schema-site-navigation\" type=\"application/ld+json\">",
+            "motivo": "Fix any of the following:\n  Document has multiple static elements with the same id attribute"
+          }
+        ]
+      },
+      {
+        "id": "image-redundant-alt",
+        "impacto": "minor",
+        "descricao": "Ensure button and link text is not repeated as image alternative",
+        "ajuda": "Text of buttons and links should not be repeated in the image alternative",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/image-redundant-alt?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 16,
+        "exemplos": [
+          {
+            "seletor": [
+              ".grow.h-full.overflow-hidden"
+            ],
+            "html": "<a class=\" w-fit flex h-full w-full grow overflow-hidden\" href=\"https://www.cnnbrasil.com.br/eleicoes/parana-pesquisas-ciro-gomes-lidera-cenarios-de-1o-e-2o-turno-no-ceara/\" target=\"_self\" rel=\"\">",
+            "motivo": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text"
+          },
+          {
+            "seletor": [
+              "#block2679696 > div > .mb-4.grow.w-fit"
+            ],
+            "html": "<a class=\" w-fit mb-4 grow\" href=\"https://www.cnnbrasil.com.br/economia/money/macroeconomia/diesel-no-brasil-encerra-semana-no-maior-valor-desde-maio-diz-anp/\" target=\"_self\" rel=\"\">",
+            "motivo": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text"
+          },
+          {
+            "seletor": [
+              "#block2679806 > div > .mb-4.grow.w-fit"
+            ],
+            "html": "<a class=\" w-fit mb-4 grow\" href=\"https://www.cnnbrasil.com.br/internacional/acordo-com-eua-e-benefico-para-todos-nos-diz-premie-da-groenlandia/\" target=\"_self\" rel=\"\">",
+            "motivo": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text"
+          }
+        ]
+      }
+    ],
+    "estrutura": {
+      "botoesSemNome": 1,
+      "campoBusca": {
+        "ariaLabel": null,
+        "ariaLabelledby": null,
+        "dentroDeRoleSearch": true,
+        "existe": true,
+        "placeholder": "Buscar",
+        "temLabel": false,
+        "title": null,
+        "visivel": false
+      },
+      "dialogoAberto": 0,
+      "h1": [
+        "CNN Brasil | Notícias Ao Vivo do Brasil e do Mundo"
+      ],
+      "iframesSemTitle": 0,
+      "imagens": {
+        "altVazio": 94,
+        "semAlt": 0,
+        "total": 154
+      },
+      "landmarks": {
+        "aside": 0,
+        "footer": 1,
+        "header": 1,
+        "main": 1,
+        "nav": 11,
+        "search": 2
+      },
+      "lang": "pt-BR",
+      "linkDePular": {
+        "pareceLinkDePular": false,
+        "texto": "Abrir menu"
+      },
+      "linksSemTexto": 0,
+      "primeirosTitulos": [
+        {
+          "nivel": 1,
+          "texto": "CNN Brasil | Notícias Ao Vivo do Brasil e do Mundo"
+        },
+        {
+          "nivel": 2,
+          "texto": "Gilmar Mendes valida reajuste do Bolsa Família e diz que medida não vi"
+        },
+        {
+          "nivel": 3,
+          "texto": "MP junto ao TCU pede suspensão de reajuste do Bolsa Família"
+        },
+        {
+          "nivel": 3,
+          "texto": "Bolsa Família: Se fosse eleitoral, teríamos feito antes, diz Dario Dur"
+        },
+        {
+          "nivel": 3,
+          "texto": "À CNN, ministro da Fazenda diz que governo cortará gastos na Previdênc"
+        },
+        {
+          "nivel": 3,
+          "texto": "MP junto ao TCU pede suspensão de reajuste do Bolsa Família"
+        },
+        {
+          "nivel": 3,
+          "texto": "Bolsa Família: Se fosse eleitoral, teríamos feito antes, diz Dario Dur"
+        },
+        {
+          "nivel": 3,
+          "texto": "À CNN, ministro da Fazenda diz que governo cortará gastos na Previdênc"
+        },
+        {
+          "nivel": 2,
+          "texto": "Trump anuncia acordo para que EUA controlem segurança da Groenlândia"
+        },
+        {
+          "nivel": 3,
+          "texto": "Exclusivo CNN: Erro de IA quase causou conflito entre EUA e China"
+        },
+        {
+          "nivel": 3,
+          "texto": "Exclusivo CNN: Erro de IA quase causou conflito entre EUA e China"
+        },
+        {
+          "nivel": 2,
+          "texto": "Datafolha: 38% veem Lula prejudicado por crise no STF e 31% citam Fláv"
+        }
+      ],
+      "saltoDeNivel": null,
+      "tabindexPositivo": 1,
+      "titlePagina": "CNN Brasil | Notícias Ao Vivo do Brasil e do Mundo",
+      "totalFocaveis": 491,
+      "totalTitulos": 176
+    },
+    "teclado": {
+      "tabulacoes": 40,
+      "paradasComFoco": 40,
+      "paradasDistintas": 40,
+      "semIndicadorVisivel": 0,
+      "percentualSemIndicador": 0.0,
+      "foraDaAreaVisivel": 0,
+      "paradasDentroDeDialogo": 0,
+      "suspeitaDeArmadilha": false,
+      "primeirasParadas": [
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": " flex w-fit hover:underline",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/blogs/jussara-soares/politica/gilmar-diz-que-reajus",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Gilmar Mendes valida reajuste do Bolsa Família e diz que med",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "flex max-w-full cursor-pointer items-start gap-2 whitespace-",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/politica/mp-junto-ao-tcu-pede-suspensao-de-reajuste",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "MP junto ao TCU pede suspensão de reajuste do Bolsa Família",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "flex max-w-full cursor-pointer items-start gap-2 whitespace-",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/bolsa-familia-se-fosse",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Bolsa Família: Se fosse eleitoral, teríamos feito antes, diz",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "flex max-w-full cursor-pointer items-start gap-2 whitespace-",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/governo-cortara-gastos",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "À CNN, ministro da Fazenda diz que governo cortará gastos na",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "flex shrink items-center lg:min-w-56 lg:h-44 min-w-full w-fu",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/internacional/trump-anuncia-acordo-para-que-eua-con",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Imagem representando a matéria: Trump anuncia acordo para qu",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": " flex w-fit hover:underline",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/internacional/trump-anuncia-acordo-para-que-eua-con",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Trump anuncia acordo para que EUA controlem segurança da Gro",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "flex max-w-full cursor-pointer items-start gap-2 whitespace-",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/internacional/exclusivo-erro-de-ia-quase-causou-con",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Exclusivo CNN: Erro de IA quase causou conflito entre EUA e ",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "flex shrink items-center lg:min-w-56 lg:h-44 min-w-full w-fu",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/eleicoes/datafolha-38-veem-lula-prejudicado-por-cri",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Imagem representando a matéria: Datafolha: 38% veem Lula pre",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": " flex w-fit hover:underline",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/eleicoes/datafolha-38-veem-lula-prejudicado-por-cri",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Datafolha: 38% veem Lula prejudicado por crise no STF e 31% ",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "flex max-w-full cursor-pointer items-start gap-2 whitespace-",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/blogs/gustavo-uribe/politica/vorcaro-bancou-hospeda",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Vorcaro bancou hospedagem em mansão para ministro \"KN\" em 20",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "flex shrink items-center lg:min-w-56 lg:h-44 min-w-full w-fu",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/nacional/sudeste/sp/ex-vereador-milton-leite-se-ent",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Imagem representando a matéria: Ex-presidente da Câmara Muni",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": " flex w-fit hover:underline",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.cnnbrasil.com.br/nacional/sudeste/sp/ex-vereador-milton-leite-se-ent",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Ex-presidente da Câmara Municipal Milton Leite se entrega à ",
+          "tipo": "",
+          "vazio": false
+        }
+      ],
+      "exemplosSemIndicador": []
+    },
+    "zoom": {
+      "em1280px": {
+        "amostraControlesCortados": [
+          {
+            "classe": "flex shrink items-center w-full aspect-video",
+            "tag": "a",
+            "texto": "Imagem representando a matéria: Única McLaren"
+          },
+          {
+            "classe": " flex w-fit hover:underline",
+            "tag": "a",
+            "texto": "Única McLaren 750s Le Mans destinada ao Brasi"
+          },
+          {
+            "classe": "flex-shrink-0 transition-opacity hover:opacity-80",
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "hover:underline",
+            "tag": "a",
+            "texto": "Isabel Mega"
+          },
+          {
+            "classe": "",
+            "tag": "a",
+            "texto": "Plataforma testa convergência de candidatos c"
+          }
+        ],
+        "amostraVazando": [
+          {
+            "classe": "keen-slider__slide fader__slide",
+            "sobraPx": 259,
+            "tag": "div",
+            "texto": "Única McLaren 750s Le Mans destinada ao Brasi"
+          },
+          {
+            "classe": "h-full bg-gray-100 px-4 pb-8 pt-3",
+            "sobraPx": 259,
+            "tag": "div",
+            "texto": "Única McLaren 750s Le Mans destinada ao Brasi"
+          },
+          {
+            "classe": "flex shrink items-center w-full aspect-video",
+            "sobraPx": 243,
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "flex size-full object-cover",
+            "sobraPx": 243,
+            "tag": "img",
+            "texto": ""
+          },
+          {
+            "classe": "flex h-full max-h-full w-full flex-grow flex-col g",
+            "sobraPx": 243,
+            "tag": "div",
+            "texto": "Única McLaren 750s Le Mans destinada ao Brasi"
+          },
+          {
+            "classe": "text-base font-bold flex w-fit",
+            "sobraPx": 243,
+            "tag": "h3",
+            "texto": "Única McLaren 750s Le Mans destinada ao Brasi"
+          }
+        ],
+        "controlesCortados": 51,
+        "elementosVazando": 8,
+        "larguraConteudo": 1249,
+        "larguraJanela": 1264,
+        "rolagemHorizontal": false,
+        "sobraHorizontalPx": 0,
+        "totalControles": 448
+      },
+      "em640px_zoom200": {
+        "amostraControlesCortados": [
+          {
+            "classe": "my-auto inline-flex items-center px-0.5",
+            "tag": "a",
+            "texto": "Ao vivo"
+          },
+          {
+            "classe": "my-auto inline-flex items-center px-0.5",
+            "tag": "a",
+            "texto": "Viagem & Gastronomia"
+          },
+          {
+            "classe": "flex shrink items-center w-full aspect-video",
+            "tag": "a",
+            "texto": "Imagem representando a matéria: Mari Saad anu"
+          },
+          {
+            "classe": " flex w-fit hover:underline",
+            "tag": "a",
+            "texto": "Mari Saad anuncia saída da Mascavo e briga en"
+          },
+          {
+            "classe": "flex shrink items-center w-full aspect-video",
+            "tag": "a",
+            "texto": "Imagem representando a matéria: Única McLaren"
+          }
+        ],
+        "amostraVazando": [
+          {
+            "classe": "my-auto inline-flex items-center px-0.5",
+            "sobraPx": 131,
+            "tag": "a",
+            "texto": "Viagem & Gastronomia"
+          },
+          {
+            "classe": "rfm-child",
+            "sobraPx": 128,
+            "tag": "div",
+            "texto": "B3SA3:\nR$ 17,560\n▼\n-0,23%"
+          },
+          {
+            "classe": "flex h-full w-fit items-center justify-center gap-",
+            "sobraPx": 128,
+            "tag": "div",
+            "texto": "B3SA3:\nR$ 17,560\n▼\n-0,23%"
+          },
+          {
+            "classe": "flex items-center gap-1",
+            "sobraPx": 119,
+            "tag": "div",
+            "texto": "R$ 17,560\n▼\n-0,23%"
+          },
+          {
+            "classe": "flex items-center gap-0.5 text-red-500",
+            "sobraPx": 119,
+            "tag": "div",
+            "texto": "▼\n-0,23%"
+          },
+          {
+            "classe": "rfm-child",
+            "sobraPx": 300,
+            "tag": "div",
+            "texto": "BBDC4:\nR$ 17,98\n▼\n-0,94%"
+          }
+        ],
+        "controlesCortados": 66,
+        "elementosVazando": 214,
+        "larguraConteudo": 624,
+        "larguraJanela": 624,
+        "rolagemHorizontal": false,
+        "sobraHorizontalPx": 0,
+        "totalControles": 370
+      }
+    }
+  },
+  {
+    "prefixo": "site4",
+    "nome": "UOL",
+    "url": "https://www.uol.com.br/",
+    "coletadoEm": "2026-09-18T20:46:52",
+    "arquivoAxe": "site4_acess.json",
+    "totalViolacoes": 12,
+    "violacoes": [
+      {
+        "id": "aria-allowed-role",
+        "impacto": "minor",
+        "descricao": "Ensures role attribute has an appropriate value for the element",
+        "ajuda": "ARIA role must be appropriate for the element",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 2,
+        "exemplos": [
+          {
+            "seletor": [
+              ".flashFeedCard--active"
+            ],
+            "html": "<a href=\"https://www.uol.com.br/flash/?c=6aad8e0778c04662499bcae6&amp;i=1\" role=\"group\" aria-roledescription=\"slide\" aria-label=\"1 de 3\" class=\"flashFeedCard flashFeedCard--active flashFeedCard--image\" data-v-6bca1427=\"\">",
+            "motivo": "Fix any of the following:\n  role group  is not allowed for given element"
+          },
+          {
+            "seletor": [
+              "footer"
+            ],
+            "html": "<footer role=\"contentinfo\" class=\"footer\">",
+            "motivo": "Fix any of the following:\n  role contentinfo  is not allowed for given element"
+          }
+        ]
+      },
+      {
+        "id": "aria-valid-attr-value",
+        "impacto": "critical",
+        "descricao": "Ensures all ARIA attributes have valid values",
+        "ajuda": "ARIA attributes must conform to valid values",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr-value?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag412"
+        ],
+        "ocorrencias": 11,
+        "exemplos": [
+          {
+            "seletor": [
+              "section[aria-labelledby=\"mpvx63lf\"]"
+            ],
+            "html": "<section aria-labelledby=\"mpvx63lf\" data-key=\"topo-1.1\" data-item-id=\"mpvx63lf\" data-area=\"topo-1.1\" class=\"orderSections__section section\" style=\"--section-color:#cb0003;--section-height:auto;\">",
+            "motivo": "Fix all of the following:\n  Invalid ARIA attribute value: aria-labelledby=\"mpvx63lf\""
+          },
+          {
+            "seletor": [
+              "section[aria-labelledby=\"mpvx63khhlg\"]"
+            ],
+            "html": "<section aria-labelledby=\"mpvx63khhlg\" data-key=\"topo-1.2\" data-item-id=\"mpvx63khhlg\" data-area=\"topo-1.2\" class=\"orderSections__section section\" style=\"--section-color:#cb0003;--section-height:auto;\">",
+            "motivo": "Fix all of the following:\n  Invalid ARIA attribute value: aria-labelledby=\"mpvx63khhlg\""
+          },
+          {
+            "seletor": [
+              ".cardPrime__item:nth-child(1) > .cardPrime__item__link.cardPrime__link.hyperlink > .cardPrime__poster"
+            ],
+            "html": "<article aria-labelledby=\"publisher-93d18ad7973d437c76ae276979bd20260910\" class=\"cardPrime__poster\">",
+            "motivo": "Fix all of the following:\n  Invalid ARIA attribute value: aria-labelledby=\"publisher-93d18ad7973d437c76ae276979bd20260910\""
+          }
+        ]
+      },
+      {
+        "id": "aria-valid-attr",
+        "impacto": "critical",
+        "descricao": "Ensures attributes that begin with aria- are valid ARIA attributes",
+        "ajuda": "ARIA attributes must conform to valid names",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/aria-valid-attr?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag412"
+        ],
+        "ocorrencias": 2,
+        "exemplos": [
+          {
+            "seletor": [
+              ".flashFeed"
+            ],
+            "html": "<section aria-label=\"Flash Feed\" aria-roledescription=\"carousel\" flashlink=\"https://www.uol.com.br/flash/?c=6aad8e0778c04662499bcae6\" class=\"flashFeed edgeToEdge section__grid__aside__item\">",
+            "motivo": "Fix any of the following:\n  Invalid ARIA attribute name: aria-roledescription"
+          },
+          {
+            "seletor": [
+              ".flashFeedCard--active"
+            ],
+            "html": "<a href=\"https://www.uol.com.br/flash/?c=6aad8e0778c04662499bcae6&amp;i=1\" role=\"group\" aria-roledescription=\"slide\" aria-label=\"1 de 3\" class=\"flashFeedCard flashFeedCard--active flashFeedCard--image\" data-v-6bca1427=\"\">",
+            "motivo": "Fix any of the following:\n  Invalid ARIA attribute name: aria-roledescription"
+          }
+        ]
+      },
+      {
+        "id": "button-name",
+        "impacto": "critical",
+        "descricao": "Ensures buttons have discernible text",
+        "ajuda": "Buttons must have discernible text",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag412"
+        ],
+        "ocorrencias": 20,
+        "exemplos": [
+          {
+            "seletor": [
+              "li[aria-label=\"Selecionar\\ time\\ Athletico\"] > .cardTeams__closed__item__teamBadge.teamBadge[role=\"button\"]"
+            ],
+            "html": "<div class=\"teamBadge cardTeams__closed__item__teamBadge\" role=\"button\" tabindex=\"0\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to scr"
+          },
+          {
+            "seletor": [
+              "li[aria-label=\"Selecionar\\ time\\ Atlético\\ MG\"] > .cardTeams__closed__item__teamBadge.teamBadge[role=\"button\"]"
+            ],
+            "html": "<div class=\"teamBadge cardTeams__closed__item__teamBadge\" role=\"button\" tabindex=\"0\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to scr"
+          },
+          {
+            "seletor": [
+              "li[aria-label=\"Selecionar\\ time\\ Bahia\"] > .cardTeams__closed__item__teamBadge.teamBadge[role=\"button\"]"
+            ],
+            "html": "<div class=\"teamBadge cardTeams__closed__item__teamBadge\" role=\"button\" tabindex=\"0\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to scr"
+          }
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "impacto": "serious",
+        "descricao": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+        "ajuda": "Elements must have sufficient color contrast",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+        "criterios": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "ocorrencias": 58,
+        "exemplos": [
+          {
+            "seletor": [
+              ".exchangeBarHeader__item.hyperlink[title=\"Dólar\"] > .exchangeBarHeader__item__value.exchangeBarHeader__item__value--pos"
+            ],
+            "html": "<span class=\"exchangeBarHeader__item__value exchangeBarHeader__item__value--pos\">5,144</span>",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 2.28 (foreground color: #20c634, background color: #ffffff, font size: 9.0pt, font weight: bold). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "seletor": [
+              ".exchangeBarHeader__item.hyperlink[title=\"Euro\"] > .exchangeBarHeader__item__value.exchangeBarHeader__item__value--pos"
+            ],
+            "html": "<span class=\"exchangeBarHeader__item__value exchangeBarHeader__item__value--pos\">5,909</span>",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 2.28 (foreground color: #20c634, background color: #ffffff, font size: 9.0pt, font weight: bold). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "seletor": [
+              "article[aria-labelledby=\"mmpa4vmf\"] > .headlineAd__link.hyperlink > .headlineAd__content > .headlineAd__title"
+            ],
+            "html": "<span class=\"headlineAd__title\">Divulgue o seu negócio com um site profissional!<br><b></b></span>",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #808080, background color: #ffffff, font size: 9.0pt, font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "empty-heading",
+        "impacto": "minor",
+        "descricao": "Ensures headings have discernible text",
+        "ajuda": "Headings must not be empty",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/empty-heading?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 4,
+        "exemplos": [
+          {
+            "seletor": [
+              ".cardVideo__containerPlayer__verticalOverlay__title > h3"
+            ],
+            "html": "<h3></h3>",
+            "motivo": "Fix any of the following:\n  Element does not have text that is visible to screen readers"
+          },
+          {
+            "seletor": [
+              "article[aria-labelledby=\"mu7699t6\"] > .hyperlink > .headlineSub__link > .headlineSub__content > .headlineSub__content__brand.titleBrand > .titleBrand__title.title__element"
+            ],
+            "html": "<h3 class=\"title__element titleBrand__title\">\n    \n\n    <!----></h3>",
+            "motivo": "Fix any of the following:\n  Element does not have text that is visible to screen readers"
+          },
+          {
+            "seletor": [
+              "article[aria-labelledby=\"mu7i5bne\"] > .hyperlink > .headlineSub__link > .headlineSub__content > .headlineSub__content__brand.titleBrand > .titleBrand__title.title__element"
+            ],
+            "html": "<h3 class=\"title__element titleBrand__title\">\n    \n\n    <!----></h3>",
+            "motivo": "Fix any of the following:\n  Element does not have text that is visible to screen readers"
+          }
+        ]
+      },
+      {
+        "id": "heading-order",
+        "impacto": "moderate",
+        "descricao": "Ensures the order of headings is semantically correct",
+        "ajuda": "Heading levels should only increase by one",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 1,
+        "exemplos": [
+          {
+            "seletor": [
+              "#mu7kbt17"
+            ],
+            "html": "<h3 id=\"mu7kbt17\" class=\"title__element headlineMain__title\">",
+            "motivo": "Fix any of the following:\n  Heading order invalid"
+          }
+        ]
+      },
+      {
+        "id": "landmark-one-main",
+        "impacto": "moderate",
+        "descricao": "Ensures the page has only one main landmark and each iframe in the page has at most one main landmark",
+        "ajuda": "Page must have one main landmark",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/landmark-one-main?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 1,
+        "exemplos": [
+          {
+            "seletor": [
+              "html"
+            ],
+            "html": "<html lang=\"pt-br\">",
+            "motivo": "Fix all of the following:\n  Page does not have a main landmark"
+          }
+        ]
+      }
+    ],
+    "estrutura": {
+      "botoesSemNome": 0,
+      "campoBusca": {
+        "ariaLabel": "text",
+        "ariaLabelledby": null,
+        "dentroDeRoleSearch": false,
+        "existe": true,
+        "placeholder": "BUSCAR NO UOL",
+        "temLabel": false,
+        "title": null,
+        "visivel": true
+      },
+      "dialogoAberto": 0,
+      "h1": [
+        "UOL - Seu universo online"
+      ],
+      "iframesSemTitle": 0,
+      "imagens": {
+        "altVazio": 0,
+        "semAlt": 3,
+        "total": 205
+      },
+      "landmarks": {
+        "aside": 6,
+        "footer": 1,
+        "header": 18,
+        "main": 0,
+        "nav": 2,
+        "search": 0
+      },
+      "lang": "pt-br",
+      "linkDePular": {
+        "pareceLinkDePular": false,
+        "texto": "INGRESSO.COM"
+      },
+      "linksSemTexto": 1,
+      "primeirosTitulos": [
+        {
+          "nivel": 2,
+          "texto": ""
+        },
+        {
+          "nivel": 3,
+          "texto": ""
+        },
+        {
+          "nivel": 3,
+          "texto": ""
+        },
+        {
+          "nivel": 1,
+          "texto": "UOL - Seu universo online"
+        },
+        {
+          "nivel": 3,
+          "texto": "Gilmar decide que reajuste do Bolsa Família não fere regras eleitorais"
+        },
+        {
+          "nivel": 3,
+          "texto": "Trump diz que EUA fecharam acordo para controlar a segurança da Groenl"
+        },
+        {
+          "nivel": 3,
+          "texto": "Milton Leite se entrega e é preso após operação em SP que mira PCC e e"
+        },
+        {
+          "nivel": 3,
+          "texto": "Datafolha: Desconfiança no STF cresce, vai a 48% e atinge recorde"
+        },
+        {
+          "nivel": 3,
+          "texto": "Lula cita Flamengo e Corinthians e diz estar decidido a 'acabar com as"
+        },
+        {
+          "nivel": 3,
+          "texto": "Gilmar reclamou de encontro e disse que Vorcaro 'parece mais bicheiro "
+        },
+        {
+          "nivel": 2,
+          "texto": "DE PRIMEIRA"
+        },
+        {
+          "nivel": 3,
+          "texto": "Lázaro: Organizada do Corinthians chegou com raiva e saiu com pena em "
+        }
+      ],
+      "saltoDeNivel": "h1 seguido de h3",
+      "tabindexPositivo": 4,
+      "titlePagina": "UOL - Seu universo online",
+      "totalFocaveis": 303,
+      "totalTitulos": 160
+    },
+    "teclado": {
+      "tabulacoes": 40,
+      "paradasComFoco": 40,
+      "paradasDistintas": 39,
+      "semIndicadorVisivel": 2,
+      "percentualSemIndicador": 5.0,
+      "foraDaAreaVisivel": 0,
+      "paradasDentroDeDialogo": 0,
+      "suspeitaDeArmadilha": false,
+      "primeirasParadas": [
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "solar-button is-medium tm-dark list only-icon regular-text-2",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "button",
+          "temBorda": false,
+          "texto": "Abrir Menu",
+          "tipo": "button",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "no-link _-1cR-Km4",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://www.uol.com.br/",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Acessar a página inicial",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "solar-button is-medium tm-dark list regular-text-2",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "button",
+          "temBorda": false,
+          "texto": "Seu time",
+          "tipo": "button",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "solar-button is-medium tm-dark list regular-text-2",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "button",
+          "temBorda": false,
+          "texto": "Seu signo",
+          "tipo": "button",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "solar-button is-medium tm-dark list regular-text-2 no-link",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://noticias.uol.com.br/eleicoes/",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Eleições 2026",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "currency-menu regular-text-2 no-link",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://economia.uol.com.br/cotacoes/cambio/",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Dólar\n5,144",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "solar-button is-medium tm-dark list bold regular-text-2",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "button",
+          "temBorda": false,
+          "texto": "Entre",
+          "tipo": "button",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "solar-button is-large tm-secondary main bold-text-button no-",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://assine.uol.com.br/?utm_source=uol.com.br&utm_medium=barra-uol&utm_campai",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Assine UOL",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://noticias.uol.com.br/politica/",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Política",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "solar-author-name",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "https://noticias.uol.com.br/autor/luccas-lucena/",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Luccas Lucena",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "icon",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(32, 32, 32)",
+          "tag": "div",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "solar-button is-medium tm-neutral rounded appearance-solid o",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "button",
+          "temBorda": true,
+          "texto": "Compartilhar",
+          "tipo": "button",
+          "vazio": false
+        }
+      ],
+      "exemplosSemIndicador": [
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "icon",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(32, 32, 32)",
+          "tag": "div",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "icon",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(32, 32, 32)",
+          "tag": "div",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        }
+      ]
+    },
+    "zoom": {
+      "em1280px": {
+        "amostraControlesCortados": [
+          {
+            "classe": "card-link no-link",
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "card-link no-link",
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "card-link no-link",
+            "tag": "a",
+            "texto": ""
+          }
+        ],
+        "amostraVazando": [
+          {
+            "classe": "carousel-item",
+            "sobraPx": 105,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "card-link no-link",
+            "sobraPx": 105,
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "card-video skeleton",
+            "sobraPx": 105,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "image-container",
+            "sobraPx": 105,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "video-thumb",
+            "sobraPx": 105,
+            "tag": "img",
+            "texto": ""
+          },
+          {
+            "classe": "play-icon",
+            "sobraPx": 10,
+            "tag": "div",
+            "texto": ""
+          }
+        ],
+        "controlesCortados": 3,
+        "elementosVazando": 18,
+        "larguraConteudo": 1249,
+        "larguraJanela": 1264,
+        "rolagemHorizontal": false,
+        "sobraHorizontalPx": 0,
+        "totalControles": 170
+      },
+      "em640px_zoom200": {
+        "amostraControlesCortados": [
+          {
+            "classe": "card-link no-link",
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "card-link no-link",
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "card-link no-link",
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "card-link no-link",
+            "tag": "a",
+            "texto": ""
+          }
+        ],
+        "amostraVazando": [
+          {
+            "classe": "carousel-item",
+            "sobraPx": 163,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "card-link no-link",
+            "sobraPx": 163,
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "card-video skeleton",
+            "sobraPx": 163,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "image-container",
+            "sobraPx": 163,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "video-thumb",
+            "sobraPx": 163,
+            "tag": "img",
+            "texto": ""
+          },
+          {
+            "classe": "play-icon",
+            "sobraPx": 68,
+            "tag": "div",
+            "texto": ""
+          }
+        ],
+        "controlesCortados": 4,
+        "elementosVazando": 24,
+        "larguraConteudo": 617,
+        "larguraJanela": 624,
+        "rolagemHorizontal": false,
+        "sobraHorizontalPx": 0,
+        "totalControles": 168
+      }
+    }
+  },
+  {
+    "prefixo": "site5",
+    "nome": "Globo.com",
+    "url": "https://www.globo.com/",
+    "coletadoEm": "2026-09-18T20:47:22",
+    "arquivoAxe": "site5_acess.json",
+    "totalViolacoes": 12,
+    "violacoes": [
+      {
+        "id": "aria-allowed-role",
+        "impacto": "minor",
+        "descricao": "Ensures role attribute has an appropriate value for the element",
+        "ajuda": "ARIA role must be appropriate for the element",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/aria-allowed-role?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 7,
+        "exemplos": [
+          {
+            "seletor": [
+              "div[data-tracking-action=\"globoplay\\|conteudo\"] > .post__link[role=\"link\"][data-tracking-view=\"true\"]"
+            ],
+            "html": "<a class=\"post__link\" role=\"link\" tabindex=\"-1\" href=\"https://globoplay.globo.com/jogada-de-risco/t/CrQvx1C5yj/?produto=GPSA,na,na&amp;origemId=95484&amp;utm_source=familiag&amp;utm_medium=gcom&amp;utm_campaign=familiag_conteudo_awar_banner_web_globoplay_jogada-de-risco_1_serie_incentivo-jogada-de-r",
+            "motivo": "Fix any of the following:\n  role link  is not allowed for given element"
+          },
+          {
+            "seletor": [
+              "div[data-tracking-action=\"globoplay\\|conteudo-aovivo\"] > .post__link[role=\"link\"][data-tracking-view=\"true\"]"
+            ],
+            "html": "<a class=\"post__link\" role=\"link\" tabindex=\"-1\" href=\"https://globoplay.globo.com/tv-globo/ao-vivo/6120663/?origemId=2802&amp;utm_source=gcom&amp;utm_medium=home-franja-vitrine&amp;utm_campaign=conteudo-aovivo&amp;utm_term=tv-globo\" data-tracking-view=\"true\" data-tracking-view-label=\"https://globopl",
+            "motivo": "Fix any of the following:\n  role link  is not allowed for given element"
+          },
+          {
+            "seletor": [
+              ".carousel-highlight-widget--active > .streaming.post[data-tracking-action=\"globoplay\\|conteudo-assinante\"] > .post__link[role=\"link\"][data-tracking-view=\"true\"]"
+            ],
+            "html": "<a class=\"post__link\" role=\"link\" tabindex=\"-1\" href=\"https://globoplay.globo.com/globonews/ao-vivo/7339101/?origemId=2802&amp;utm_source=gcom&amp;utm_medium=home-franja-vitrine&amp;utm_campaign=conteudo-aovivo&amp;utm_term=globonews\" data-tracking-view=\"true\" data-tracking-view-label=\"https://globo",
+            "motivo": "Fix any of the following:\n  role link  is not allowed for given element"
+          }
+        ]
+      },
+      {
+        "id": "aria-roles",
+        "impacto": "critical",
+        "descricao": "Ensures all elements with a role attribute use a valid value",
+        "ajuda": "ARIA roles used must conform to valid values",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/aria-roles?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag412"
+        ],
+        "ocorrencias": 1,
+        "exemplos": [
+          {
+            "seletor": [
+              "a[title=\"valor\\ data\"]"
+            ],
+            "html": "<a href=\"https://valor.globo.com/valor-data/?utm_source=globo.com&amp;utm_medium=widget&amp;utm_campaign=economia\" title=\"valor data\" data-tracking-label=\"https://valor.globo.com/valor-data/?utm_source=globo.com&amp;utm_medium=widget&amp;utm_campaign=economia\" data-tracking-action=\"jornalismo|Econom",
+            "motivo": "Fix all of the following:\n  Role must be one of the valid ARIA roles\n  The role used is not widely supported in assistive technologies"
+          }
+        ]
+      },
+      {
+        "id": "button-name",
+        "impacto": "critical",
+        "descricao": "Ensures buttons have discernible text",
+        "ajuda": "Buttons must have discernible text",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/button-name?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag412"
+        ],
+        "ocorrencias": 5,
+        "exemplos": [
+          {
+            "seletor": [
+              ".poster__play-wrapper"
+            ],
+            "html": "<button class=\"poster__play-wrapper\" tabindex=\"0\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to scr"
+          },
+          {
+            "seletor": [
+              "button[data-share=\"\"]"
+            ],
+            "html": "<button class=\"media-control-button media-control-element\" data-share=\"\" data-controls=\"\"></button>",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to scr"
+          },
+          {
+            "seletor": [
+              ".play"
+            ],
+            "html": "<button class=\"media-control-button play media-control-element\" data-playpause=\"\">",
+            "motivo": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element has a value attribute and the value attribute is empty\n  Element has no value attribute or the value attribute is empty\n  Element does not have inner text that is visible to scr"
+          }
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "impacto": "serious",
+        "descricao": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+        "ajuda": "Elements must have sufficient color contrast",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+        "criterios": [
+          "wcag2aa",
+          "wcag143"
+        ],
+        "ocorrencias": 336,
+        "exemplos": [
+          {
+            "seletor": [
+              ".items:nth-child(4) > .homeui-tc-esporte.header-title[aria-label=\"G\\ E\"]"
+            ],
+            "html": "<a class=\"header-title homeui-tc-esporte\" href=\"https://ge.globo.com/?utm_source=globo.com&amp;utm_medium=header\" aria-label=\"G E\" data-tracking-label=\"https://ge.globo.com/?utm_source=globo.com&amp;utm_medium=header\" target=\"_self\" rel=\"\">ge</a>",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 3.06 (foreground color: #06aa48, background color: #ffffff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "seletor": [
+              ".homeui-tc-cartola"
+            ],
+            "html": "<a class=\"header-title homeui-tc-cartola\" href=\"https://ge.globo.com/cartola/?utm_source=globocom&amp;utm_medium=header&amp;utm_campaign=c2022_10_cartola_cartola-2022_alcance&amp;utm_content=HEA_cartola-2022\" aria-label=\"Cartola\" data-tracking-label=\"https://ge.globo.com/cartola/?utm_source=globocom",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 2.7 (foreground color: #ff7400, background color: #ffffff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "seletor": [
+              ".items:nth-child(6) > .homeui-tc-globoplay.header-title[aria-label=\"Globoplay\"]"
+            ],
+            "html": "<a class=\"header-title homeui-tc-globoplay\" href=\"https://globoplay.globo.com/?origemId=1760&amp;utm_source=gcom&amp;utm_medium=home&amp;utm_campaign=gcom-botao-destaque-superior\" aria-label=\"Globoplay\" data-tracking-label=\"https://globoplay.globo.com/?origemId=1760&amp;utm_source=gcom&amp;utm_mediu",
+            "motivo": "Fix any of the following:\n  Element has insufficient color contrast of 4.25 (foreground color: #f50234, background color: #ffffff, font size: 12.0pt, font weight: bold). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "duplicate-id",
+        "impacto": "minor",
+        "descricao": "Ensures every id attribute value is unique",
+        "ajuda": "id attribute value must be unique",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/duplicate-id?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag411"
+        ],
+        "ocorrencias": 5,
+        "exemplos": [
+          {
+            "seletor": [
+              ".previsao-barra__frame--info__temperature > svg[width=\"\\34 0\"][viewBox=\"\\30 \\ 0\\ 40\\ 40\"][height=\"\\34 0\"] > defs > pattern"
+            ],
+            "html": "<pattern id=\"pattern0_2626_51581\" patternContentUnits=\"objectBoundingBox\" width=\"1\" height=\"1\"><use xlink:href=\"#image0_2626_51581\" transform=\"scale(0.0104167)\"></use></pattern>",
+            "motivo": "Fix any of the following:\n  Document has multiple static elements with the same id attribute"
+          },
+          {
+            "seletor": [
+              ".previsao-barra__frame--info__temperature > svg[width=\"\\34 0\"][viewBox=\"\\30 \\ 0\\ 40\\ 40\"][height=\"\\34 0\"] > defs > image"
+            ],
+            "html": "<image id=\"image0_2626_51581\" width=\"96\" height=\"96\" preserveAspectRatio=\"none\" xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAJUklEQVR4nO2c23MbZxmH3wUKHZpwAXSGUobCQLhhpjNclOEvAAoDM1BCOnDF38BAy6lJaCZOAgxN6hyalhBCKRCTkjM5tXbsRLbs1fksS5aso7",
+            "motivo": "Fix any of the following:\n  Document has multiple static elements with the same id attribute"
+          },
+          {
+            "seletor": [
+              ".previsao-barra__body--container--anchor[data-tracking-disabled=\"true\"]:nth-child(1) > .card__previsao > .card__previsao__icon > svg[width=\"\\34 0\"][viewBox=\"\\30 \\ 0\\ 40\\ 40\"][height=\"\\34 0\"] > defs > pattern"
+            ],
+            "html": "<pattern id=\"pattern0_2626_51591\" patternContentUnits=\"objectBoundingBox\" width=\"1\" height=\"1\"><use xlink:href=\"#image0_2626_51591\" transform=\"scale(0.0104167)\"></use></pattern>",
+            "motivo": "Fix any of the following:\n  Document has multiple static elements with the same id attribute"
+          }
+        ]
+      },
+      {
+        "id": "empty-heading",
+        "impacto": "minor",
+        "descricao": "Ensures headings have discernible text",
+        "ajuda": "Headings must not be empty",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/empty-heading?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 1,
+        "exemplos": [
+          {
+            "seletor": [
+              ".header-grid__logo__link--icon"
+            ],
+            "html": "<h1 class=\"header-grid__logo__link--icon\">",
+            "motivo": "Fix any of the following:\n  Element does not have text that is visible to screen readers"
+          }
+        ]
+      },
+      {
+        "id": "image-redundant-alt",
+        "impacto": "minor",
+        "descricao": "Ensure button and link text is not repeated as image alternative",
+        "ajuda": "Text of buttons and links should not be repeated in the image alternative",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/image-redundant-alt?application=axeAPI",
+        "criterios": [],
+        "ocorrencias": 8,
+        "exemplos": [
+          {
+            "seletor": [
+              "li[data-index=\"\\31 \"]"
+            ],
+            "html": "<li data-theme=\"comportamento\" data-index=\"1\" data-total=\"4\" data-tracking-action=\"comportamento|Você sabia?|modulo-materia\" class=\"post\">",
+            "motivo": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text"
+          },
+          {
+            "seletor": [
+              "a[data-block-id=\"\\34 86\"]"
+            ],
+            "html": "<a class=\"post-multicontent__link\" href=\"https://g1.globo.com/economia/noticia/2026/09/18/warren-buffett-deixa-a-presidencia-de-berkshire-hathaway.ghtml\" data-tracking-view=\"true\" data-tracking-label=\"https://g1.globo.com/economia/noticia/2026/09/18/warren-buffett-deixa-a-presidencia-de-berkshire-ha",
+            "motivo": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text"
+          },
+          {
+            "seletor": [
+              "li[data-index=\"\\32 \"]"
+            ],
+            "html": "<li data-theme=\"comportamento\" data-index=\"2\" data-total=\"4\" data-tracking-action=\"comportamento|Você sabia?|modulo-materia\" class=\"post\">",
+            "motivo": "Fix all of the following:\n  Element contains <img> element with alt text that duplicates existing text"
+          }
+        ]
+      },
+      {
+        "id": "label",
+        "impacto": "critical",
+        "descricao": "Ensures every form element has a label",
+        "ajuda": "Form elements must have labels",
+        "url": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+        "criterios": [
+          "wcag2a",
+          "wcag332",
+          "wcag131"
+        ],
+        "ocorrencias": 2,
+        "exemplos": [
+          {
+            "seletor": [
+              "#header-search-input"
+            ],
+            "html": "<input id=\"header-search-input\" class=\"header-search__input\" type=\"text\" placeholder=\"Encontre na globo.com\" data-tracking-category=\"header\" data-tracking-label=\"abrir busca\" data-block-id=\"452\">",
+            "motivo": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <lab"
+          },
+          {
+            "seletor": [
+              ".searchV2__header__term"
+            ],
+            "html": "<input class=\"searchV2__header__term\" type=\"text\" name=\"searchV2-term\" placeholder=\"o que você procura?\" autocomplete=\"off\">",
+            "motivo": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <lab"
+          }
+        ]
+      }
+    ],
+    "estrutura": {
+      "botoesSemNome": 5,
+      "campoBusca": {
+        "ariaLabel": null,
+        "ariaLabelledby": null,
+        "dentroDeRoleSearch": false,
+        "existe": true,
+        "placeholder": "o que você procura?",
+        "temLabel": false,
+        "title": null,
+        "visivel": true
+      },
+      "dialogoAberto": 0,
+      "h1": [
+        "",
+        "amanhã, 18/9",
+        "sáb, 19/9",
+        "dom, 20/9",
+        "seg, 21/9",
+        "ter, 22/9",
+        "qua, 23/9",
+        "qui, 24/9",
+        "sex, 25/9",
+        "12x R$ 16,90",
+        "12x R$ 22,90",
+        "12x R$ 19,90",
+        "12x R$ 29,90",
+        "12x R$ 4,99"
+      ],
+      "iframesSemTitle": 0,
+      "imagens": {
+        "altVazio": 5,
+        "semAlt": 40,
+        "total": 159
+      },
+      "landmarks": {
+        "aside": 0,
+        "footer": 1,
+        "header": 4,
+        "main": 0,
+        "nav": 2,
+        "search": 0
+      },
+      "lang": "pt-BR",
+      "linkDePular": {
+        "pareceLinkDePular": true,
+        "texto": "Ir para menu"
+      },
+      "linksSemTexto": 0,
+      "primeirosTitulos": [
+        {
+          "nivel": 1,
+          "texto": ""
+        },
+        {
+          "nivel": 1,
+          "texto": "amanhã, 18/9"
+        },
+        {
+          "nivel": 1,
+          "texto": "sáb, 19/9"
+        },
+        {
+          "nivel": 1,
+          "texto": "dom, 20/9"
+        },
+        {
+          "nivel": 1,
+          "texto": "seg, 21/9"
+        },
+        {
+          "nivel": 1,
+          "texto": "ter, 22/9"
+        },
+        {
+          "nivel": 1,
+          "texto": "qua, 23/9"
+        },
+        {
+          "nivel": 1,
+          "texto": "qui, 24/9"
+        },
+        {
+          "nivel": 1,
+          "texto": "sex, 25/9"
+        },
+        {
+          "nivel": 2,
+          "texto": "Gilmar Mendes diz que reajuste do Bolsa Família não fere regras eleito"
+        },
+        {
+          "nivel": 2,
+          "texto": "Ministro do STF afirma que aumento de 15,04% só recompõe inflação"
+        },
+        {
+          "nivel": 2,
+          "texto": "STF rejeita recurso por unanimidade e mantém condenação de Eduardo"
+        }
+      ],
+      "saltoDeNivel": null,
+      "tabindexPositivo": 1,
+      "titlePagina": "globo.com - Absolutamente tudo sobre notícias, esportes e entretenimento",
+      "totalFocaveis": 469,
+      "totalTitulos": 149
+    },
+    "teclado": {
+      "tabulacoes": 40,
+      "paradasComFoco": 40,
+      "paradasDistintas": 22,
+      "semIndicadorVisivel": 12,
+      "percentualSemIndicador": 30.0,
+      "foraDaAreaVisivel": 7,
+      "paradasDentroDeDialogo": 0,
+      "suspeitaDeArmadilha": false,
+      "primeirasParadas": [
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "codex-link codex-link--medium codex-link--standalone codex-h",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "#",
+          "outline": "solid 4px rgb(133, 157, 255)",
+          "tag": "a",
+          "temBorda": false,
+          "texto": "Pular para o conteúdo",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "clappr-player",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 0px rgb(31, 33, 35)",
+          "tag": "div",
+          "temBorda": false,
+          "texto": "Assista também no\n00:00\n/\n02:21\nMinimizar vídeo",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "menu-button",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": true,
+          "href": "",
+          "outline": "auto 1px rgb(16, 16, 16)",
+          "tag": "button",
+          "temBorda": false,
+          "texto": "MENU",
+          "tipo": "",
+          "vazio": false
+        }
+      ],
+      "exemplosSemIndicador": [
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "clappr-player",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 0px rgb(31, 33, 35)",
+          "tag": "div",
+          "temBorda": false,
+          "texto": "Assista também no\n00:00\n/\n02:21\nMinimizar vídeo",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        },
+        {
+          "alturaZero": false,
+          "boxShadow": "none",
+          "classe": "",
+          "dentroDaTela": true,
+          "dentroDeDialogo": false,
+          "focoVisivel": false,
+          "href": "",
+          "outline": "none 3px rgb(31, 33, 35)",
+          "tag": "nova-barra-globocom",
+          "temBorda": false,
+          "texto": "",
+          "tipo": "",
+          "vazio": false
+        }
+      ]
+    },
+    "zoom": {
+      "em1280px": {
+        "amostraControlesCortados": [
+          {
+            "classe": "codex-link codex-link--medium codex-link--standalo",
+            "tag": "a",
+            "texto": "Pular para o conteúdo"
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "tag": "a",
+            "texto": "jogos"
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "tag": "a",
+            "texto": "eleições 2026"
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "tag": "a",
+            "texto": "guia de compras"
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "tag": "a",
+            "texto": "carros"
+          }
+        ],
+        "amostraVazando": [
+          {
+            "classe": "menu-btn-back",
+            "sobraPx": 96,
+            "tag": "button",
+            "texto": ""
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "sobraPx": 96,
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "sobraPx": 96,
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "menu-btn-back",
+            "sobraPx": 96,
+            "tag": "button",
+            "texto": ""
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "sobraPx": 96,
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "sobraPx": 96,
+            "tag": "a",
+            "texto": ""
+          }
+        ],
+        "controlesCortados": 25,
+        "elementosVazando": 6,
+        "larguraConteudo": 1249,
+        "larguraJanela": 1264,
+        "rolagemHorizontal": false,
+        "sobraHorizontalPx": 0,
+        "totalControles": 855
+      },
+      "em640px_zoom200": {
+        "amostraControlesCortados": [
+          {
+            "classe": "codex-link codex-link--medium codex-link--standalo",
+            "tag": "a",
+            "texto": "Pular para o conteúdo"
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "tag": "a",
+            "texto": "jogos"
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "tag": "a",
+            "texto": "eleições 2026"
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "tag": "a",
+            "texto": "guia de compras"
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "tag": "a",
+            "texto": "carros"
+          }
+        ],
+        "amostraVazando": [
+          {
+            "classe": "",
+            "sobraPx": 370,
+            "tag": "div",
+            "texto": ""
+          },
+          {
+            "classe": "menu-btn-back",
+            "sobraPx": 192,
+            "tag": "button",
+            "texto": ""
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "sobraPx": 192,
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "sobraPx": 192,
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "sobraPx": 192,
+            "tag": "a",
+            "texto": ""
+          },
+          {
+            "classe": "menu-item-link menu-link menu-navegacao-color-prim",
+            "sobraPx": 192,
+            "tag": "a",
+            "texto": ""
+          }
+        ],
+        "controlesCortados": 503,
+        "elementosVazando": 485,
+        "larguraConteudo": 994,
+        "larguraJanela": 624,
+        "rolagemHorizontal": true,
+        "sobraHorizontalPx": 370,
+        "totalControles": 840
+      }
+    }
+  }
+]
