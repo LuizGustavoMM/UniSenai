@@ -1,0 +1,10 @@
+# ambiente
+.venv/
+__pycache__/
+*.py[cod]
+
+# scripts e logs auxiliares de execucao
+RODAR.bat
+COMO_RODAR.md
+setup_log.txt
+log_execucao.txt

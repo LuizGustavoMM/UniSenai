@@ -1,0 +1,2 @@
+selenium==4.25.0
+axe-selenium-python==2.1.6
