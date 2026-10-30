@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xml:lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #ffffff; color: #222222; }
+    .topo { display: flex; align-items: center; justify-content: space-between; padding: 12px 32px; background: #0b3d91; }
+    .topo img { height: 48px; }
+    .busca { display: flex; gap: 8px; align-items: center; }
+    .busca input, .busca select { padding: 6px 10px; border: 1px solid #cccccc; border-radius: 4px; }
+    .icone-btn { width: 36px; height: 36px; border: none; border-radius: 50%; background: #ffcc00; cursor: pointer; }
+    .icone-lupa { display: inline-block; width: 18px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1a1a' stroke-width='3'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M15 15l7 7'/%3E%3C/svg%3E") no-repeat center; }
+    .menu { display: flex; gap: 24px; padding: 10px 32px; background: #f2f2f2; }
+    .menu a { color: #0b3d91; text-decoration: none; font-weight: bold; }
+    .menu-toggle { cursor: pointer; padding: 4px 10px; background: #dddddd; border-radius: 4px; }
+    .conteudo { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; padding: 24px 32px; }
+    .destaque > img { width: 100%; height: 280px; object-fit: cover; background: #9bb7e0; }
+    .destaque a img { width: 16px; height: 16px; vertical-align: middle; }
+    .chapeu { color: #aaaaaa; font-size: 12px; text-transform: uppercase; }
+    .resumo { color: #b3b3b3; font-size: 14px; }
+    .card { display: flex; gap: 12px; margin-bottom: 16px; }
+    .card img { width: 120px; height: 80px; background: #c9d6ea; }
+    .lateral { background: #fafafa; padding: 16px; border-radius: 8px; }
+    .newsletter input { width: 100%; padding: 8px; margin: 6px 0; }
+    .assinar { display: inline-block; padding: 8px 16px; background: #ffcc00; color: #ffffff; border-radius: 4px; cursor: pointer; }
+    .rodape { padding: 16px 32px; background: #0b3d91; color: #4a6fb5; font-size: 12px; }
+    .social a { display: inline-block; width: 28px; height: 28px; margin-right: 8px; border-radius: 50%; background: #ffffff; }
+  </style>
+</head>
+<body>
+
+  <header class="topo">
+    <img src="img/logo-techinclusiva.png">
+    <div class="busca">
+      <input type="text" placeholder="Buscar notícias...">
+      <select>
+        <option>Todas as editorias</option>
+        <option>Tecnologia</option>
+        <option>Inclusão</option>
+        <option>Mercado</option>
+      </select>
+      <button class="icone-btn"><span class="icone-lupa"></span></button>
+    </div>
+  </header>
+
+  <nav class="menu">
+    <a href="#">Início</a>
+    <a href="#">Tecnologia</a>
+    <a href="#">Inclusão</a>
+    <a href="#">Mercado</a>
+    <div class="menu-toggle" role="button" aria-expanded="sim"></div>
+  </nav>
+
+  <main class="conteudo">
+    <section>
+      <article class="destaque">
+        <p class="chapeu">Acessibilidade</p>
+        <h3>Leitores de tela ganham suporte nativo em novos navegadores</h3>
+        <img src="img/destaque-leitor-de-tela.jpg">
+        <p class="resumo">Atualização promete facilitar a navegação de pessoas com deficiência visual em portais de notícias e serviços públicos.</p>
+        <a href="#"><img src="img/seta-leia-mais.png"></a>
+      </article>
+
+      <h2>Últimas notícias</h2>
+      <ul>
+        <div class="card">
+          <img src="img/noticia-1.jpg">
+          <p>Empresas brasileiras ampliam contratação de profissionais com deficiência</p>
+        </div>
+        <div class="card">
+          <img src="img/noticia-2.jpg">
+          <p>Governo lança guia de acessibilidade para sites públicos</p>
+        </div>
+      </ul>
+
+      <h2>Mapa das redações</h2>
+      <a href="/mapa-redacoes"><img src="img/mapa-redacoes.png" alt="Mapa das redações regionais" ismap></a>
+
+      <h2>Vídeo da semana</h2>
+      <iframe src="about:blank" width="480" height="270"></iframe>
+    </section>
+
+    <aside class="lateral">
+      <h4>Mais lidas</h4>
+      <li>Como testar acessibilidade com axe-core</li>
+      <li>WCAG 2.1 explicada em 10 minutos</li>
+
+      <div class="newsletter">
+        <h4>Newsletter</h4>
+        <input type="text" placeholder="Seu nome" autocomplete="nome-completo">
+        <span>E-mail</span>
+        <input type="email">
+        <span class="assinar">Assinar</span>
+      </div>
+
+      <a href="#" aria-hidden="true">Anuncie conosco</a>
+    </aside>
+  </main>
+
+  <footer class="rodape">
+    <p>© 2026 TechInclusiva — Jornalismo sobre tecnologia e inclusão.</p>
+    <div class="social" role="directory">
+      <a href="https://example.com/techinclusiva-instagram"></a>
+      <a href="https://example.com/techinclusiva-linkedin"></a>
+    </div>
+  </footer>
+
+</body>
+</html>
