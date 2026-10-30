@@ -1,0 +1,2 @@
+# PDFs gerados pelo parser nao podem ter quebras de linha convertidas
+*.pdf binary
