@@ -1,0 +1,117 @@
+== Execucao da varredura axe-core CLI (index) ==
+Data: 2026-10-30 19:41:20 -0300
+Node: v24.11.0 | axe CLI: 4.14.0 | ChromeDriver 155.0.8059.84 | Chrome: 155.0.8059.85
+Comando: npm run axe
+
+
+> techinclusiva-auditoria-acessibilidade@1.0.0 axe
+> axe http://localhost:8080/index.html --tags wcag2a,wcag2aa,wcag21a,wcag21aa --chromedriver-path node_modules/chromedriver/lib/chromedriver/chromedriver.exe --save resultado_axe.json --dir . --show-errors
+
+Running axe-core 4.14.0 in chrome-headless
+
+Testing http://localhost:8080/index.html ... please wait, this may take a minute.
+
+  Violation of "aria-command-name" with 1 occurrences!
+    Ensure every ARIA button, link and menuitem has an accessible name. Correct invalid elements at:
+     - .menu-toggle
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/aria-command-name
+
+  Violation of "aria-deprecated-role" with 1 occurrences!
+    Ensure elements do not use deprecated roles. Correct invalid elements at:
+     - .social
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/aria-deprecated-role
+
+  Violation of "aria-hidden-focus" with 1 occurrences!
+    Ensure aria-hidden elements are not focusable nor contain focusable elements. Correct invalid elements at:
+     - a[aria-hidden="true"]
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/aria-hidden-focus
+
+  Violation of "aria-valid-attr-value" with 1 occurrences!
+    Ensure all ARIA attributes have valid values. Correct invalid elements at:
+     - .menu-toggle
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/aria-valid-attr-value
+
+  Violation of "autocomplete-valid" with 1 occurrences!
+    Ensure the autocomplete attribute is correct and suitable for the form field. Correct invalid elements at:
+     - input[placeholder="Seu nome"]
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/autocomplete-valid
+
+  Violation of "button-name" with 1 occurrences!
+    Ensure buttons have discernible text. Correct invalid elements at:
+     - button
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/button-name
+
+  Violation of "color-contrast" with 4 occurrences!
+    Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds. Correct invalid elements at:
+     - .chapeu
+     - .resumo
+     - .assinar
+     - footer > p
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/color-contrast
+
+  Violation of "document-title" with 1 occurrences!
+    Ensure each HTML document contains a non-empty <title> element. Correct invalid elements at:
+     - html
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/document-title
+
+  Violation of "frame-title" with 1 occurrences!
+    Ensure <iframe> and <frame> elements have an accessible name. Correct invalid elements at:
+     - iframe
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/frame-title
+
+  Violation of "html-xml-lang-mismatch" with 1 occurrences!
+    Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page. Correct invalid elements at:
+     - html
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/html-xml-lang-mismatch
+
+  Violation of "image-alt" with 5 occurrences!
+    Ensure <img> elements have alternative text or a role of none or presentation. Correct invalid elements at:
+     - img[src$="logo-techinclusiva.png"]
+     - article > img
+     - img[src$="seta-leia-mais.png"]
+     - img[src$="noticia-1.jpg"]
+     - img[src$="noticia-2.jpg"]
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/image-alt
+
+  Violation of "label" with 1 occurrences!
+    Ensure every form element has a label. Correct invalid elements at:
+     - input[type="email"]
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/label
+
+  Violation of "link-name" with 3 occurrences!
+    Ensure links have discernible text. Correct invalid elements at:
+     - article > a[href="#"]
+     - .social > a:nth-child(1)
+     - .social > a:nth-child(2)
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/link-name
+
+  Violation of "list" with 1 occurrences!
+    Ensure that lists are structured correctly. Correct invalid elements at:
+     - ul
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/list
+
+  Violation of "listitem" with 2 occurrences!
+    Ensure <li> elements are used semantically. Correct invalid elements at:
+     - li:nth-child(2)
+     - li:nth-child(3)
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/listitem
+
+  Violation of "meta-viewport" with 1 occurrences!
+    Ensure <meta name="viewport"> does not disable text scaling and zooming. Correct invalid elements at:
+     - meta[name="viewport"]
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/meta-viewport
+
+  Violation of "select-name" with 1 occurrences!
+    Ensure select element has an accessible name. Correct invalid elements at:
+     - select
+    For details, see: https://dequeuniversity.com/rules/axe/4.14/select-name
+
+27 Accessibility issues detected.
+Testing complete of 1 pages
+
+Saved file at C:\Users\Guu\Documents\GitPessoal\UniSenai\qualidade-e-teste-de-software\trabalho-acessibilidade-II\resultado_axe.json 
+
+Please note that only 20% to 50% of all accessibility issues can automatically be detected. 
+Manual testing is always required. For more information see:
+https://dequeuniversity.com/class/testing
+
