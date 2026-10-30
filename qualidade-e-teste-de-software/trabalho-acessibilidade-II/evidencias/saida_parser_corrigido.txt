@@ -1,0 +1,19 @@
+==============================================================================
+RELATÓRIO DE ACESSIBILIDADE - PORTAL TECHINCLUSIVA (WCAG 2.1 A/AA)
+==============================================================================
+URL analisada : http://localhost:8080/index_corrigido.html
+Data da coleta: 2026-10-30T22:41:30.306Z
+Ferramenta    : axe-core 4.14.0
+Regras: 29 aprovadas, 0 reprovadas, 0 para revisão manual
+Total: 0 regras violadas em 0 elementos
+==============================================================================
+Severidade              Regras   Elementos
+critical (Crítica)           0           0
+serious (Grave)              0           0
+moderate (Moderada)          0           0
+minor (Baixa)                0           0
+==============================================================================
+
+Nenhuma violação encontrada nas regras WCAG 2.1 A/AA avaliadas.
+
+Relatório PDF salvo em: relatorios\relatorio_resultado_axe_corrigido.pdf
