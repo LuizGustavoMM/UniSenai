@@ -1,0 +1,37 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1. Servir portal (porta 8080)",
+      "type": "shell",
+      "command": "python -m http.server 8080",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "2. Varredura axe (index.html)",
+      "type": "shell",
+      "command": "npm run axe",
+      "problemMatcher": []
+    },
+    {
+      "label": "3. Parser do resultado_axe.json",
+      "type": "shell",
+      "command": ".venv/Scripts/python parser_acessibilidade.py resultado_axe.json",
+      "problemMatcher": []
+    },
+    {
+      "label": "4. Varredura axe (index_corrigido.html)",
+      "type": "shell",
+      "command": "npm run axe:corrigido",
+      "problemMatcher": []
+    },
+    {
+      "label": "5. Testes do parser (pytest)",
+      "type": "shell",
+      "command": ".venv/Scripts/python -m pytest -v",
+      "problemMatcher": [],
+      "group": "test"
+    }
+  ]
+}
