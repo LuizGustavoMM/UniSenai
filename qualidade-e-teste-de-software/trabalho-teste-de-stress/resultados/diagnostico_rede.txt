@@ -1,0 +1,25 @@
+# Diagnostico de rede do host testado (2026-11-07 10:40)
+
+$ curl -s -o /dev/null -D - https://jsonplaceholder.typicode.com/users
+HTTP/1.1 200 OK
+Cache-Control: max-age=43200
+x-powered-by: Express
+x-ratelimit-limit: 3600000
+x-ratelimit-remaining: 3599999
+x-ratelimit-reset: 1790812826
+Age: 14329
+cf-cache-status: HIT
+Server: cloudflare
+CF-RAY: a56cc0615ea8e967-GRU
+
+# 3 execucoes, cada uma abrindo uma conexao nova (TCP + TLS)
+$ curl -s -o /dev/null -w "dns=%{time_namelookup}s tcp=%{time_connect}s tls=%{time_appconnect}s primeiro_byte=%{time_starttransfer}s total=%{time_total}s\n" https://jsonplaceholder.typicode.com/users
+dns=0.005023s tcp=0.132550s tls=0.275761s primeiro_byte=0.418212s total=0.418318s
+dns=0.009106s tcp=0.136477s tls=0.278582s primeiro_byte=0.419238s total=0.419426s
+dns=0.014738s tcp=0.142992s tls=0.289129s primeiro_byte=0.432356s total=0.432438s
+
+$ ping -n 10 jsonplaceholder.typicode.com
+    Pacotes: Enviados = 10, Recebidos = 10, Perdidos = 0 (0% de
+             perda),
+Aproximar um número redondo de vezes em milissegundos:
+    Mínimo = 125ms, Máximo = 127ms, Média = 126ms
