@@ -1,0 +1,7 @@
+# ambiente
+.venv/
+__pycache__/
+*.py[cod]
+
+# relatorio final entregue no AVA
+*.pdf
