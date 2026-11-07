@@ -1,0 +1,7 @@
+{
+  "usuarios": 200,
+  "spawn_rate": 20,
+  "duracao_s": 300,
+  "inicio": "2026-11-07 10:30:29",
+  "host": "https://jsonplaceholder.typicode.com"
+}

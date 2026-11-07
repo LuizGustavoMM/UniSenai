@@ -1,0 +1,4 @@
+[2026-11-07 10:26:46,132] GU/INFO/locust.main: Starting Locust 2.47.0
+[2026-11-07 10:26:46,132] GU/INFO/locust.main: Starting web interface at http://localhost:8089, press enter to open your default browser.
+[2026-11-07 10:26:52,668] GU/INFO/locust.runners: Ramping to 100 users at a rate of 10.00 per second
+[2026-11-07 10:27:01,727] GU/INFO/locust.runners: All users spawned: {"JogadorEsports": 100} (100 total users)
